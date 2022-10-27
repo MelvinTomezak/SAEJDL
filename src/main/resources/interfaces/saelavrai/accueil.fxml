@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -8,15 +9,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.AccueilController">
    <children>
-      <Button layoutY="368.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Notice" textAlignment="CENTER" underline="true">
+      <Button fx:id="Notice" layoutY="368.0" mnemonicParsing="false" onAction="#ONotice" prefHeight="37.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Notice" textAlignment="CENTER" underline="true">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="262.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Login" textAlignment="CENTER" underline="true">
+      <Button fx:id="Login" layoutX="173.0" layoutY="365.0" mnemonicParsing="false" onAction="#Loginn" style="-fx-background-color: transparent;" text="Login" textAlignment="CENTER" underline="true">
          <font>
             <Font size="20.0" />
          </font>
@@ -26,7 +26,7 @@
             <Font size="30.0" />
          </font>
       </TextField>
-      <Button layoutX="480.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Score" textAlignment="CENTER" underline="true">
+      <Button layoutX="325.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Score" textAlignment="CENTER" underline="true">
          <font>
             <Font size="20.0" />
          </font>
@@ -38,20 +38,25 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="147.0" layoutY="219.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="307.0" style="-fx-background-color: transparent;" text="Leave Game" textAlignment="CENTER">
+      <Button fx:id="buttonl" layoutX="147.0" layoutY="219.0" mnemonicParsing="false" onAction="#LeaveG" prefHeight="37.0" prefWidth="307.0" style="-fx-background-color: transparent;" text="Leave Game" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </Button>
       <ImageView fitHeight="133.0" fitWidth="200.0" layoutX="400.0" layoutY="-1.0">
-         <image>
-            <Image url="@../Downloads/Uk%20flag.png" />
-         </image>
+            <Image url="@../../images/Uk flag.png" />
       </ImageView>
       <ImageView fitHeight="133.0" fitWidth="211.0" layoutY="-1.0">
+            <Image url="@../../images/Usflag.png" />
+      </ImageView>
+      <ImageView layoutX="550.0" layoutY="350.0">
          <image>
-            <Image url="@../../../../../../../../Downloads/Usflag.png" />
+            <Image url="@../../images/home_icon.png" />
          </image>
       </ImageView>
+      <Button fx:id="Home" layoutX="551.0" layoutY="350.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Accueil" textFill="#ffffff00" />
    </children>
 </AnchorPane>

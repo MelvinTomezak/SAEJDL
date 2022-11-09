@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.URL;
+
 
 public class AccueilController {
     @FXML
@@ -21,14 +23,18 @@ public class AccueilController {
     public void ONotice (ActionEvent actionEvent){
         AccueilMain.stackPane.getChildren().get(0).setVisible(true);
         AccueilMain.stackPane.getChildren().get(1).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(2).setVisible(false);
     }
     public void LeaveG (ActionEvent actionEvent){
         Platform.exit();
     }
-    public void Loginn(ActionEvent actionEvent){
-        WebView browser = new WebView();
-        WebEngine webEngine = browser.getEngine();
-        webEngine.load("https://www.google.fr");
-        
+    public void Loginn(ActionEvent actionEvent) throws IOException {
+        String url = "https://www.google.com";
+        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+    }
+    public void Score(ActionEvent actionEvent) throws IOException {
+        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(1).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(2).setVisible(true);
     }
 }

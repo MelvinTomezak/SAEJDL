@@ -30,10 +30,17 @@ public class AccueilMain extends Application {
         catch (IOException e){
             e.printStackTrace();
         }
-        stackPane.getChildren().addAll(Notice,Accueil);
+        AnchorPane Score = null;
+        try {
+            Score = FXMLLoader.load(getClass().getResource("score.fxml"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stackPane.getChildren().addAll(Notice,Accueil,Score);
         Notice.setVisible(false);
         Accueil.setVisible(true);
-
+        Score.setVisible(false);
         Scene scene = new Scene(stackPane);
         stage.setTitle("Goose Game");
         stage.setScene(scene);

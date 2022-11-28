@@ -19,7 +19,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField alignment="CENTER" layoutX="114.0" layoutY="-1.0" style="-fx-background-color: transparent;" text="HOMEPAGE">
+      <TextField editable="false" alignment="CENTER" layoutX="114.0" layoutY="-1.0" style="-fx-background-color: transparent;" text="HOMEPAGE">
          <font>
             <Font size="30.0" />
          </font>
@@ -31,7 +31,7 @@
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="147.0" layoutY="141.0" stroke="BLACK" strokeType="INSIDE" width="307.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="147.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="307.0" />
-      <Button layoutX="147.0" layoutY="140.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="307.0" style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
+      <Button fx:id="Start" layoutX="147.0" layoutY="140.0" mnemonicParsing="false" onAction="#Start" prefHeight="37.0" prefWidth="307.0" style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>

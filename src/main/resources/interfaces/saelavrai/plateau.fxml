@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.PlateauController">
+   <children>
+      <TextField alignment="CENTER" editable="false" layoutX="534.0" layoutY="14.0" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: Transparent;" text="Lance le dé">
+         <font>
+            <Font name="Elephant" size="12.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="76.0" fitWidth="80.0" layoutX="537.0" layoutY="34.0">
+         <image>
+            <Image url="@../../images/face de dé 1.JPG" />
+         </image>
+      </ImageView>
+      <Button fx:id="lancede" layoutX="534.0" layoutY="34.0" mnemonicParsing="false" onAction="#lancede" prefHeight="76.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Lancé le dé" textFill="#ffffff00">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="314.0" fitWidth="443.0" layoutX="86.0" layoutY="47.0">
+         <image>
+            <Image url="@../../images/plaaato.JPG" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

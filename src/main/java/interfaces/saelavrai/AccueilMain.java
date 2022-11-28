@@ -1,6 +1,4 @@
 package interfaces.saelavrai;
-
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,10 +35,18 @@ public class AccueilMain extends Application {
         catch (IOException e){
             e.printStackTrace();
         }
-        stackPane.getChildren().addAll(Notice,Accueil,Score);
+        AnchorPane Start = null;
+        try {
+            Start = FXMLLoader.load(getClass().getResource("plateau.fxml"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        stackPane.getChildren().addAll(Notice,Accueil,Score,Start);
         Notice.setVisible(false);
         Accueil.setVisible(true);
         Score.setVisible(false);
+        Start.setVisible(false);
         Scene scene = new Scene(stackPane);
         stage.setTitle("Goose Game");
         stage.setScene(scene);

@@ -24,6 +24,7 @@ public class AccueilController {
         AccueilMain.stackPane.getChildren().get(0).setVisible(true);
         AccueilMain.stackPane.getChildren().get(1).setVisible(false);
         AccueilMain.stackPane.getChildren().get(2).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(3).setVisible(false);
     }
     public void LeaveG (ActionEvent actionEvent){
         Platform.exit();
@@ -36,5 +37,12 @@ public class AccueilController {
         AccueilMain.stackPane.getChildren().get(0).setVisible(false);
         AccueilMain.stackPane.getChildren().get(1).setVisible(false);
         AccueilMain.stackPane.getChildren().get(2).setVisible(true);
+        AccueilMain.stackPane.getChildren().get(3).setVisible(false);
+    }
+    public void Start(ActionEvent actionEvent) throws IOException {
+        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(1).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(2).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(3).setVisible(true);
     }
 }

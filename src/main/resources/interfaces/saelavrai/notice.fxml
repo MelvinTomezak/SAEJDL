@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.NoticeController">
    <children>
-      <TextField alignment="CENTER" layoutX="145.0" layoutY="14.0" style="-fx-background-color: transparent;" text="Notice">
+      <TextField editable="false" alignment="CENTER" layoutX="145.0" layoutY="14.0" style="-fx-background-color: transparent;" text="Notice">
          <font>
             <Font size="25.0" />
          </font>

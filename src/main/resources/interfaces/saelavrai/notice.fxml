@@ -16,7 +16,7 @@
       </TextField>
       <ImageView layoutX="550.0" layoutY="350.0">
          <image>
-            <Image url="@../../images/home_icon.png" />
+            <Image url="@../../images/home_icon.png"/>
          </image>
       </ImageView>
       <Button fx:id="Accueil" layoutX="550.0" layoutY="350.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />

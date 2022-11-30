@@ -16,7 +16,7 @@ public class AccueilMain extends Application {
         stackPane = new StackPane();
         AnchorPane Accueil = null;
         try {
-           Accueil= FXMLLoader.load(getClass().getResource("accueil.fxml"));
+           Accueil= FXMLLoader. load(getClass().getResource("accueil.fxml"));
         }
         catch (IOException e){
             e.printStackTrace();

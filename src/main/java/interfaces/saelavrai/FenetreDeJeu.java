@@ -1,4 +1,4 @@
-package interfaces.saelavrai;
+/*package interfaces.saelavrai;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -20,7 +20,7 @@ public class FenetreDeJeu {
     private Button nouvellePartie = new Button("Recommencer une nouvelle partie");
     private Color[] couleurs = new Color[]{Color.RED, Color.CYAN, Color.GREEN, Color.BLACK};
     private FenetreDeLancement fdl = new FenetreDeLancement(this);
-    //private Partie partie;
+    private Partie partie;
     public FenetreDeJeu(Stage stage){
         this.stageJeu = stage;
 
@@ -32,3 +32,4 @@ public class FenetreDeJeu {
 
     }
 }
+*/

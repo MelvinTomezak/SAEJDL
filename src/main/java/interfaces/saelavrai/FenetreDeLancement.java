@@ -1,4 +1,4 @@
-package interfaces.saelavrai;
+/*package interfaces.saelavrai;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -18,4 +18,4 @@ public class FenetreDeLancement {
     private AnchorPane anchorPane;
     private Pane pane;
 
-}
+}*/

@@ -16,7 +16,7 @@
       </TextField>
       <ImageView fitHeight="76.0" fitWidth="80.0" layoutX="537.0" layoutY="34.0">
          <image>
-            <Image url="@../../images/face de dé 1.JPG" />
+            <Image url="@../../images/face1.JPG" />
          </image>
       </ImageView>
       <Button fx:id="lancede" layoutX="534.0" layoutY="34.0" mnemonicParsing="false" onAction="#lancede" prefHeight="76.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Lancé le dé" textFill="#ffffff00">

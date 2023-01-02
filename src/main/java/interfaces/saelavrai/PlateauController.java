@@ -28,11 +28,5 @@ public class PlateauController {
             System.out.println("Vous avez fait 6");}
 
     }
-    public void Home (ActionEvent actionEvent){
-        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(1).setVisible(true);
-        AccueilMain.stackPane.getChildren().get(2).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(3).setVisible(false);
-    }
 
 }

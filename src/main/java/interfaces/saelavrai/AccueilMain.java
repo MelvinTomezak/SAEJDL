@@ -11,6 +11,12 @@ import java.io.IOException;
 public class AccueilMain extends Application {
     @FXML
     static StackPane stackPane;
+
+    /**
+     * La fonction start prend stage en paramètre, elle permet de charger nos différentes pages FXML dans des AnchorsPanes pour qu'on puisse gérer l'affichage par la suite.
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         stackPane = new StackPane();
@@ -35,18 +41,10 @@ public class AccueilMain extends Application {
         catch (IOException e){
             e.printStackTrace();
         }
-        AnchorPane Start = null;
-        try {
-            Start = FXMLLoader.load(getClass().getResource("plateau.fxml"));
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        stackPane.getChildren().addAll(Notice,Accueil,Score,Start);
+        stackPane.getChildren().addAll(Notice,Accueil,Score);
         Notice.setVisible(false);
         Accueil.setVisible(true);
         Score.setVisible(false);
-        Start.setVisible(false);
         Scene scene = new Scene(stackPane);
         stage.setTitle("Goose Game");
         stage.setScene(scene);

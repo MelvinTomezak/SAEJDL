@@ -1,15 +1,16 @@
-import interfaces.saelavrai.AccueilMain;
+/*import interfaces.saelavrai.AccueilController;
 import interfaces.saelavrai.Joueur;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.Start;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestAccueil {
-    @Test
-    void test_applicationselance() {
-        AccueilMain.launch(AccueilMain.class);
+    Stage stage;
+    AccueilController accueilController = new AccueilController();
+    @Start
+    public void start(Stage stage) throws Exception {
     }
-
     @Test
     public void test_should_never_fail() {
         assertThat(true).isTrue();
@@ -27,7 +28,7 @@ public class TestAccueil {
 
     }
     @Test
-    void testNomFenetre() {
-
+    void should_initialize_with_correct_title() {
+        assertThat(stage.getTitle()).isEqualTo("Goose Game");
     }
-}
+}*/

@@ -14,6 +14,10 @@ public class Joueur {
         return this.nomJoueur;
     }
 
+    /**
+     * La fonction setNomJoueur vas permettre aux joueurs de rentrer un nom et ce nom ne pourra pas être une chaine de caractères vide.
+     * @param nomJoueur
+     */
     public void setNomJoueur(String nomJoueur) {
         if (nomJoueur == null || nomJoueur.isEmpty())
                 throw new IllegalArgumentException("Veuillez saisir un nom valide");

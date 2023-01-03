@@ -65,6 +65,6 @@ public class AccueilController {
         AccueilMain.stackPane.getChildren().get(2).setVisible(false);
         Platform.exit();
         Plateau plateau = new Plateau();
-        plateau.setVisble(true);
+        plateau.setVisible(true);
     }
 }

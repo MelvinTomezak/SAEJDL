@@ -8,7 +8,16 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
+
 public class AccueilMain extends Application {
+    private static Socket socket;
+    public AccueilMain() throws IOException {
+        socket = new Socket("127.0.0.1",10007);
+    }
+    public static Socket getClient(){
+        return socket;
+    }
     @FXML
     static StackPane stackPane;
 

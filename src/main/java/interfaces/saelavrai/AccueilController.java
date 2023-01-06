@@ -1,12 +1,16 @@
 package interfaces.saelavrai;
 
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static javafx.application.Application.launch;
 
 
 public class AccueilController {
@@ -59,12 +63,13 @@ public class AccueilController {
      * @throws IOException
      */
 
-    public void Start(ActionEvent actionEvent) throws IOException {
+    public void Start(ActionEvent actionEvent) throws Exception {
         AccueilMain.stackPane.getChildren().get(0).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(1).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(1).setVisible(true);
         AccueilMain.stackPane.getChildren().get(2).setVisible(false);
-        Platform.exit();
+        //Platform.exit();
+        Stage stage = new Stage();
         Plateau plateau = new Plateau();
-        plateau.setVisible(true);
+        plateau.start(stage);
     }
 }

@@ -1,75 +1,58 @@
 package interfaces.saelavrai;
 
-import javax.swing.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
 import java.awt.*;
 
-public class Plateau extends JFrame {
-    private int NbCase = 1;
-    JButton[][] cases = new JButton[10][10];
-    JPanel plateau = new JPanel();
+import static com.sun.javafx.fxml.expression.Expression.add;
 
-    public Plateau() {
-        setSize(800, 800);
-        setLocationRelativeTo(null);
-        setTitle("Goose Game");
-        setLayout(new BorderLayout());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        plateau.setLayout(new GridLayout(10, 10));
-        plateau.setBackground(Color.GREEN);
+
+public class Plateau extends Application {
+    @Override
+    public void start(Stage stage) throws Exception {
+        //Stage stage = new Stage();
+        GridPane plateau = new GridPane();
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                cases[i][j] = new JButton();
-                plateau.add(cases[i][j]);
+                Rectangle rect = new Rectangle(50, 50);
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        rect.setFill(Color.GREEN);
+                    } else {
+                        rect.setFill(Color.YELLOW);
+                    }
+                }
+                else if (i % 5 == 0){
+                    if (j % 2 == 0) {
+                        rect.setFill(Color.RED);
+                    } else {
+                        rect.setFill(Color.GREEN);
+                    }
+                }
+                else {
+                    if (j % 2 == 0) {
+                        rect.setFill(Color.YELLOW);
+                    } else {
+                        rect.setFill(Color.RED);
+                    }
+                }
+                plateau.add(rect, i, j);
             }
         }
-        for (int i = 9; i > 0; i = i - 1) {
-            for (int j = 1; j < 10; j = j + 1) {
-                cases[i][j].setBackground(Color.GREEN);
-                cases[i][j].setEnabled(false);
-                cases[i][j].setText(String.format(String.valueOf(NbCase)));
-                NbCase = NbCase + 1;
-                j = j + 1;
-                cases[i][j].setBackground(Color.YELLOW);
-                cases[i][j].setEnabled(false);
-                cases[i][j].setText(String.format(String.valueOf(NbCase)));
-                NbCase = NbCase + 1;
-                j = j + 1;
-                cases[i][j].setBackground(Color.RED);
-                cases[i][j].setEnabled(false);
-                cases[i][j].setText(String.format(String.valueOf(NbCase)));
-                NbCase = NbCase + 1;
-            }
-            if (i == 1) {
-                break;
-            }
-            --i;
-            for (int j = 9; j > 0; j = j - 1) {
-                cases[i][j].setBackground(Color.GREEN);
-                cases[i][j].setEnabled(false);
-                cases[i][j].setText(String.format(String.valueOf(NbCase)));
-                j = j - 1;
-                NbCase = NbCase + 1;
-                cases[i][j].setBackground(Color.YELLOW);
-                cases[i][j].setEnabled(false);
-                cases[i][j].setText(String.format(String.valueOf(NbCase)));
-                j = j - 1;
-                NbCase = NbCase + 1;
-                cases[i][j].setBackground(Color.RED);
-                cases[i][j].setEnabled(false);
-                cases[i][j].setText(String.format(String.valueOf(NbCase)));
-                NbCase = NbCase + 1;
-            }
-        }
-        add(plateau, BorderLayout.CENTER);
+        Scene scene = new Scene(plateau, 500,500);
+        stage.setScene(scene);
+        stage.setTitle("Goose Game");
+        stage.show();
     }
 
-    public JButton[][] getCases() {
-        return cases;
-    }
-
-
-
-    public void setCases(JButton[][] cases) {
-        this.cases = cases;
+    public static void main(String[] args) {
+        launch();
     }
 }

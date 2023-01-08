@@ -6,18 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.Socket;
-
 public class AccueilMain extends Application {
-  /*  private static Socket socket;
-    public AccueilMain() throws IOException {
-        socket = new Socket("127.0.0.1",10007);
-    }
-    public static Socket getClient(){
-        return socket;
-    }*/
     @FXML
     static StackPane stackPane;
 
@@ -27,7 +17,7 @@ public class AccueilMain extends Application {
      * @throws IOException
      */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         stackPane = new StackPane();
         AnchorPane Accueil = null;
         try {
@@ -50,10 +40,17 @@ public class AccueilMain extends Application {
         catch (IOException e){
             e.printStackTrace();
         }
-        stackPane.getChildren().addAll(Notice,Accueil,Score);
+        AnchorPane NoticeAnglais = null;
+        try {
+            NoticeAnglais = FXMLLoader.load(getClass().getResource("noticeAnglais.fxml"));
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        stackPane.getChildren().addAll(Notice,Accueil,Score,NoticeAnglais);
         Notice.setVisible(false);
         Accueil.setVisible(true);
         Score.setVisible(false);
+        NoticeAnglais.setVisible(false);
         Scene scene = new Scene(stackPane);
         stage.setTitle("Goose Game");
         stage.setScene(scene);

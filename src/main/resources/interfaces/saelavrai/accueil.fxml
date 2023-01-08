@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400" prefWidth="600" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.AccueilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1000" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.AccueilController">
    <children>
-      <Button fx:id="Notice" layoutY="368.0" mnemonicParsing="false" onAction="#ONotice" prefHeight="37.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Notice" textAlignment="CENTER" underline="true">
+      <Button fx:id="Notice" layoutX="14.0" layoutY="549.0" mnemonicParsing="false" onAction="#ONotice" prefHeight="37.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Notice" textAlignment="CENTER" underline="true">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="Login" layoutX="173.0" layoutY="365.0" mnemonicParsing="false" onAction="#Loginn" style="-fx-background-color: transparent;" text="Login" textAlignment="CENTER" underline="true">
+      <Button fx:id="Login" layoutX="324.0" layoutY="551.0" mnemonicParsing="false" onAction="#Loginn" style="-fx-background-color: transparent;" text="Login" textAlignment="CENTER" underline="true">
          <font>
-            <Font size="20.0" />
+            <Font name="Arial" size="20.0" />
          </font>
       </Button>
-      <TextField editable="false" alignment="CENTER" layoutX="114.0" layoutY="-1.0" style="-fx-background-color: transparent;" text="HOMEPAGE">
+      <TextField alignment="CENTER" editable="false" layoutX="282.0" style="-fx-background-color: transparent;" text="HOMEPAGE">
          <font>
-            <Font size="30.0" />
+            <Font name="Bauhaus 93" size="40.0" />
          </font>
       </TextField>
-      <Button layoutX="325.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Score" textAlignment="CENTER" underline="true">
+      <Button layoutX="631.0" layoutY="547.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Score" textAlignment="CENTER" underline="true">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="147.0" layoutY="141.0" stroke="BLACK" strokeType="INSIDE" width="307.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="147.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="307.0" />
-      <Button fx:id="Start" layoutX="147.0" layoutY="140.0" mnemonicParsing="false" onAction="#Start" prefHeight="37.0" prefWidth="307.0" style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="300.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="301.0" layoutY="301.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
+      <Button fx:id="Start" layoutX="300.0" layoutY="147.0" mnemonicParsing="false" onAction="#Start" prefHeight="39.0" prefWidth="426.0" style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonl" layoutX="147.0" layoutY="219.0" mnemonicParsing="false" onAction="#LeaveG" prefHeight="37.0" prefWidth="307.0" style="-fx-background-color: transparent;" text="Leave Game" textAlignment="CENTER">
+      <Button fx:id="buttonl" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#LeaveG" prefHeight="39.0" prefWidth="426.0" style="-fx-background-color: transparent;" text="Leave Game" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -44,16 +46,30 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="133.0" fitWidth="200.0" layoutX="400.0" layoutY="-1.0">
+      <ImageView fitHeight="133.0" fitWidth="200.0" layoutX="800.0">
             <Image url="@../../images/Uk flag.png" />
       </ImageView>
-      <ImageView fitHeight="133.0" fitWidth="211.0" layoutY="-1.0">
+      <ImageView fitHeight="133.0" fitWidth="206.0" layoutY="-1.0">
             <Image url="@../../images/Usflag.png" />
       </ImageView>
-      <Button fx:id="Score" layoutX="337.0" layoutY="375.0" mnemonicParsing="false" onAction="#Score" style="-fx-background-color: Transparent;" text="Score" textAlignment="CENTER" textFill="#ffffff00">
+      <Button fx:id="Score" layoutX="631.0" layoutY="546.0" mnemonicParsing="false" onAction="#Score" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: Transparent;" text="Score" textAlignment="CENTER" textFill="#ffffff00">
          <font>
-            <Font size="13.0" />
+            <Font name="Arial" size="20.0" />
          </font>
       </Button>
+      <Button fx:id="GitHub" layoutX="867.0" layoutY="551.0" mnemonicParsing="false" onAction="#GitHub" prefHeight="37.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="GitHub" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></Button>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="800.0" layoutY="197.0">
+         <image>
+            <Image url="@../../images/OieHome.JPG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutY="197.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../../images/OieHome.JPG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -37,7 +37,7 @@ public class Plateau extends Application {
                 plateau.add(rect, i, j);
             }
         }
-        Scene scene = new Scene(plateau, 500,500);
+        Scene scene = new Scene(plateau, 1000,600);
         stage.setScene(scene);
         stage.setTitle("Goose Game");
         stage.show();

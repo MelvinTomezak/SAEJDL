@@ -8,30 +8,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.NoticeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1000.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.NoticeController">
    <children>
-      <TextField alignment="CENTER" editable="false" layoutX="145.0" layoutY="14.0" style="-fx-background-color: transparent;" text="Notice">
+      <TextField alignment="CENTER" editable="false" layoutX="338.0" layoutY="7.0" style="-fx-background-color: transparent;" text="Notice">
          <font>
-            <Font size="25.0" />
+            <Font name="Bauhaus 93" size="30.0" />
          </font>
       </TextField>
-      <ImageView layoutX="550.0" layoutY="350.0">
+      <ImageView layoutX="950.0" layoutY="550.0">
          <image>
             <Image url="@../../images/home_icon.png" />
          </image>
       </ImageView>
-      <Button fx:id="Accueil" layoutX="550.0" layoutY="350.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
-      <ImageView fitHeight="67.0" fitWidth="138.0" layoutX="462.0">
+      <Button fx:id="Accueil" layoutX="944.0" layoutY="550.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
+      <ImageView fitHeight="67.0" fitWidth="138.0" layoutX="862.0">
          <image>
             <Image url="@../../images/France.png" />
          </image>
       </ImageView>
-      <TextField layoutX="421.0" layoutY="69.0" prefHeight="21.0" prefWidth="179.0" style="-fx-background-color: transparent;" text="Pour traduire cliquer sur le drapeau">
+      <TextField layoutX="821.0" layoutY="67.0" prefHeight="21.0" prefWidth="179.0" style="-fx-background-color: transparent;" text="Pour traduire cliquer sur le drapeau">
          <font>
             <Font size="10.0" />
          </font>
       </TextField>
-      <Button fx:id="Translate" layoutX="462.0" layoutY="2.0" mnemonicParsing="false" onAction="#Translate" prefHeight="67.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Translate" textFill="#ffffff00" />
-      <Label layoutX="14.0" layoutY="90.0" prefHeight="235.0" prefWidth="586.0" text="Bienvenue dans notre Jeu de l’oie revisité, avant toute chose veuillez lire le fichier « Readme » présent sur GitHub afin de comprendre comment utiliser l’application ainsi que les différentes fonctionnalités qui y sont présentes. En appuyant sur le bouton « Start Game », vous trouverez notre jeu de plateau. Les règles du jeu sont simples, chaque joueur a un pion qui lui est assigné, le but est d’avoir le plus de point a la fin du plateau en répondant a différentes questions en anglais (culture général, grammaire…). Vous vous déplacerez sur le plateau a l’aide d’un dé, vous pouvez tombé sur 3 types de cases : Case verte = question facile, Case jaune = question moyen et Case rouge = question difficile." wrapText="true" />
+      <Button fx:id="Translate" layoutX="862.0" mnemonicParsing="false" onAction="#Translate" prefHeight="67.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Translate" textFill="#ffffff00" />
+      <Label layoutX="7.0" layoutY="77.0" prefHeight="364.0" prefWidth="990.0" text="Bienvenue dans notre Jeu de l’oie revisité, avant toute chose veuillez lire le fichier « Readme » présent sur GitHub afin de comprendre comment utiliser l’application ainsi que les différentes fonctionnalités qui y sont présentes. En appuyant sur le bouton « Start Game », vous trouverez notre jeu de plateau. Les règles du jeu sont simples, chaque joueur a un pion qui lui est assigné, le but est d’avoir le plus de point a la fin du plateau en répondant a différentes questions en anglais (culture général, grammaire…). Vous vous déplacerez sur le plateau a l’aide d’un dé, vous pouvez tombé sur 3 types de cases : Case verte = question facile, Case jaune = question moyen et Case rouge = question difficile." wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ImageView fitHeight="237.0" fitWidth="261.0" layoutY="363.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../../images/OieHome.JPG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

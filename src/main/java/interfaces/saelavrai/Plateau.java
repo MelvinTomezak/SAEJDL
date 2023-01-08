@@ -1,7 +1,9 @@
 package interfaces.saelavrai;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,6 +12,7 @@ public class Plateau extends Application {
     @Override
     public void start(Stage stage) {
         GridPane plateau = new GridPane();
+        Button De = new Button();
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Rectangle rect = new Rectangle(50, 50);
@@ -35,9 +38,10 @@ public class Plateau extends Application {
                     }
                 }
                 plateau.add(rect, i, j);
+                plateau.setAlignment(Pos.CENTER);
             }
         }
-        Scene scene = new Scene(plateau, 1000,600);
+        Scene scene = new Scene(plateau, 600,600);
         stage.setScene(scene);
         stage.setTitle("Goose Game");
         stage.show();

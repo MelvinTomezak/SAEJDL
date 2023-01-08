@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.NoticeAnglaisController">
+    <children>
+        <TextField alignment="CENTER" editable="false" layoutX="145.0" layoutY="14.0" style="-fx-background-color: transparent;" text="Rules">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </TextField>
+        <ImageView layoutX="550.0" layoutY="350.0">
+            <image>
+                <Image url="@../../images/home_icon.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="Accueil" layoutX="550.0" layoutY="350.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
+      <ImageView fitHeight="67.0" fitWidth="138.0" layoutX="462.0">
+         <image>
+            <Image url="@../../images/Usflag.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="462.0" layoutY="67.0" prefHeight="21.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="for translate press the flag">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
+      <Button fx:id="Translate" layoutX="462.0" layoutY="2.0" mnemonicParsing="false" onAction="#Translate" prefHeight="67.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Translate" textFill="#ffffff00" />
+      <Label layoutX="10.0" layoutY="78.0" prefHeight="266.0" prefWidth="581.0" text="Welcome to our Goose Game revisited, first you need to read the file name “ReadMe”you can find this on our GitHub page. This file is going to help you to use the application and discover all the functionality. When you press the button name “Start  Game”, you can find our game board. The rules are simples, a player has a pawn who is assigned to the player, the goal is to have the biggest score at the end of the game, you have a score when you answer to a question. There are three types of questions : Easy questions when you are on a green case, Medium questions when you are on a yellow case and Hard questions when you are on a red case. There are different types of questions (grammar, general culture…)." wrapText="true" />
+    </children>
+</AnchorPane>

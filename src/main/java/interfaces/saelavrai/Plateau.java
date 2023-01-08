@@ -2,22 +2,13 @@ package interfaces.saelavrai;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.awt.*;
-
-import static com.sun.javafx.fxml.expression.Expression.add;
-
-
 public class Plateau extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
-        //Stage stage = new Stage();
+    public void start(Stage stage) {
         GridPane plateau = new GridPane();
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {

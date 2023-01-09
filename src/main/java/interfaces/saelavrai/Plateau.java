@@ -1,6 +1,8 @@
 package interfaces.saelavrai;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,11 +11,23 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.util.Random;
+
 public class Plateau extends Application {
+    private int de;
+    private Random random = new Random();
     @Override
     public void start(Stage stage) {
         GridPane plateau = new GridPane();
         Button De = new Button("Lancer le dé");
+        De.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                LancerDe();
+                System.out.println("Vous avez fait " + LancerDe());
+            }
+        });
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Rectangle rect = new Rectangle(50, 50);
@@ -53,8 +67,16 @@ public class Plateau extends Application {
         stage.show();
     }
 
-    public void De(){
+    public int LancerDe (){
+        this.de = 1+this.random.nextInt(6);
+
+        return getDe();
     }
+
+    public int getDe() {
+        return de;
+    }
+
     public static void main(String[] args) {
         launch();
     }

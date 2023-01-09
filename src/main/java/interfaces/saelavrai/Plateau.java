@@ -1,10 +1,11 @@
 package interfaces.saelavrai;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -12,7 +13,7 @@ public class Plateau extends Application {
     @Override
     public void start(Stage stage) {
         GridPane plateau = new GridPane();
-        Button De = new Button();
+        Button De = new Button("Lancer le dé");
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 Rectangle rect = new Rectangle(50, 50);
@@ -41,12 +42,19 @@ public class Plateau extends Application {
                 plateau.setAlignment(Pos.CENTER);
             }
         }
-        Scene scene = new Scene(plateau, 600,600);
+        VBox vBox = new VBox();
+        vBox.setAlignment(Pos.CENTER_LEFT);
+        vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        vBox.getChildren().addAll(plateau, De);
+        Scene scene = new Scene(vBox, 800,600);
+        scene.setFill(Color.LIGHTGREEN);
         stage.setScene(scene);
         stage.setTitle("Goose Game");
         stage.show();
     }
 
+    public void De(){
+    }
     public static void main(String[] args) {
         launch();
     }

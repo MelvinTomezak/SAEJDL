@@ -7,15 +7,28 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.net.Socket;
+
+import static java.lang.System.out;
+
 public class AccueilMain extends Application {
     @FXML
     static StackPane stackPane;
+    private static Socket socket;
 
-    /**
-     * La fonction start prend stage en paramètre, elle permet de charger nos différentes pages FXML dans des AnchorsPanes pour qu'on puisse gérer l'affichage par la suite.
-     * @param stage
-     * @throws IOException
-     */
+    public AccueilMain() throws IOException {
+
+    }
+    public static Socket getClient(){
+        return socket;
+    }
+
+
+        /**
+         * La fonction start prend stage en paramètre, elle permet de charger nos différentes pages FXML dans des AnchorsPanes pour qu'on puisse gérer l'affichage par la suite.
+         * @param stage
+         * @throws IOException
+         */
     @Override
     public void start(Stage stage) {
         stackPane = new StackPane();
@@ -60,4 +73,16 @@ public class AccueilMain extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    public synchronized void init() throws IOException {
+
+        out.println("New client ! ");
+        //Client client = new Client("127.0.0.1", 10007);
+        //client.init();
+        //Serveur serveur = new Serveur(10007);
+        //serveur.init();
+
+
+    }
+
 }

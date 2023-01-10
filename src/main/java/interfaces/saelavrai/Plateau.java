@@ -101,7 +101,7 @@ public class Plateau extends Application {
             pion1.setTranslateX(pion1.getTranslateX() + (50*getDe()));
             FinTourJoueur1 = true;
             if (FinTourJoueur1 == true){
-                System.out.println("Fin tour joueur 1");
+                System.out.println("Fin tour joueur 1.");
                 break;
             }
             if (pion1.getTranslateX() >= 515){

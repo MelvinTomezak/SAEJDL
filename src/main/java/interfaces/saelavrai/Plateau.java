@@ -1,5 +1,8 @@
 package interfaces.saelavrai;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,19 +15,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Plateau extends Application {
     private int de;
+     AtomicInteger pos = new AtomicInteger();
+
+
+     AtomicInteger numberOfSquaresTravelledCircle1 = new AtomicInteger(pos.get());
+
+    AtomicInteger numberOfMovesCircle1 = new AtomicInteger();
+
     private Random random = new Random();
-    private boolean FinTourJoueur1;
-    private boolean FinTourJoueur2;
-    private boolean FinTourJoueur3;
-    private boolean FinTourJoueur4;
     private int ligne = 9;
     private int colonne = 0;
-    Circle pion1 = new Circle(10, Color.PURPLE);
+    static Circle pion1 = new Circle(10, Color.PURPLE);
     Circle pion2 = new Circle(10, Color.BLACK);
     Circle pion3 = new Circle(10, Color.CYAN);
     Circle pion4 = new Circle(10, Color.BLUE);
@@ -37,7 +45,7 @@ public class Plateau extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 LancerDe();
-                mouvementPion();
+                mouvpiont();
             }
         });
         for (int i = 0; i < 10; i++) {
@@ -89,28 +97,239 @@ public class Plateau extends Application {
         stage.setScene(scene);
         stage.setTitle("Goose Game");
         stage.show();
+
     }
 
-    public int LancerDe (){
-        this.de = this.random.nextInt(6) + 1;
-        return this.de;
+    public void LancerDe(){
+        this.de = this.random.nextInt(6)+1;
     }
-    public void mouvementPion(){
-        while(pion1.getTranslateX() < 515){
-            System.out.println("Vous avez fait " + getDe());
-            pion1.setTranslateX(pion1.getTranslateX() + (50*getDe()));
-            FinTourJoueur1 = true;
-            if (FinTourJoueur1 == true){
-                System.out.println("Fin tour joueur 1.");
-                break;
+    public void mouvpiont() {
+        AtomicInteger i = new AtomicInteger();
+        i.set(0);
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(true);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), ev -> {
+
+            // while(numberOfSquaresTravelledCircle1.get() < 23) {
+            if (numberOfSquaresTravelledCircle1.get() == 99) {
+                System.out.println("joueur 1 a gagné");
+                timeline.stop();
             }
-            if (pion1.getTranslateX() >= 515){
-                pion1.setTranslateY(pion1.getTranslateY() - 50);
-                pion1.setTranslateX(pion1.getTranslateX() - (50*getDe()));
-                System.out.println("Ligne 1 fini");
-            }
-        }
+                if (numberOfMovesCircle1.get() <= this.de - 1) {
+
+/////pattern 1
+                    if (numberOfSquaresTravelledCircle1.get() <= 9) {
+                        pion1.setTranslateX(pion1.getTranslateX() + 50);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    } if (numberOfSquaresTravelledCircle1.get() == 9 && i.get() == 0) {
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() >= 10 && numberOfSquaresTravelledCircle1.get() < 19) {
+                        pion1.setTranslateX(pion1.getTranslateX() - 50);
+
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 19 && i.get() == 0) {
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    }
+                    /////pattern 2
+
+                    else if (numberOfSquaresTravelledCircle1.get() >= 19 && numberOfSquaresTravelledCircle1.get() < 29) {
+                        pion1.setTranslateX(pion1.getTranslateX() + 50);
+
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 29 && i.get() == 0) {
+
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() >= 29 && numberOfSquaresTravelledCircle1.get() < 39) {
+                        pion1.setTranslateX(pion1.getTranslateX() - 50);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 39 && i.get() == 0) {
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    }
+                    ///pattern 3
+                    else if (numberOfSquaresTravelledCircle1.get() >= 38 && numberOfSquaresTravelledCircle1.get() < 49) {
+                        pion1.setTranslateX(pion1.getTranslateX() + 50);
+
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(i);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 49 && i.get() == 0) {
+
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() >= 49 && numberOfSquaresTravelledCircle1.get() < 59) {
+                        pion1.setTranslateX(pion1.getTranslateX() - 50);
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 59 && i.get() == 0) {
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+                    }
+                    ////pattern 4
+                    else if (numberOfSquaresTravelledCircle1.get() >= 59 && numberOfSquaresTravelledCircle1.get() < 69) {
+                        pion1.setTranslateX(pion1.getTranslateX() + 50);
+
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 69 && i.get() == 0) {
+
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() >= 69 && numberOfSquaresTravelledCircle1.get() < 79) {
+                        pion1.setTranslateX(pion1.getTranslateX() - 50);
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 79 && i.get() == 0) {
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    }
+                    ////pattern 5
+                    else if (numberOfSquaresTravelledCircle1.get() >= 79 && numberOfSquaresTravelledCircle1.get() < 89) {
+                        pion1.setTranslateX(pion1.getTranslateX() + 50);
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+                    } else if (numberOfSquaresTravelledCircle1.get() == 89 && i.get() == 0) {
+
+                        pion1.setTranslateY(pion1.getTranslateY() - 50);
+                        i.set(1);
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+
+
+                    } else if (numberOfSquaresTravelledCircle1.get() >= 89 && numberOfSquaresTravelledCircle1.get() <= 98) {
+                        pion1.setTranslateX(pion1.getTranslateX() - 50);
+
+                        pos.set(pos.get() + 1);
+                        numberOfSquaresTravelledCircle1.set(pos.get());
+                        i.set(0);
+                        System.out.println(numberOfSquaresTravelledCircle1.get());
+                        numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
+
+                    }
+
+                } else if (numberOfMovesCircle1.get()== this.de) {
+                    numberOfMovesCircle1.set(0);
+                    timeline.stop();
+
+                }
+
+
+        });
+        timeline.getKeyFrames().add(kf);
+        System.out.println("Le de a fait "+ getDe());
+        timeline.play();
+
     }
+
 
     public int getDe() {
         return de;

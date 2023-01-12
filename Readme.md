@@ -7,3 +7,4 @@ Pour commencer vous devez vous rendre sur le site web disponible a l'adresse sui
   <img width="500" height="350" src="https://user-images.githubusercontent.com/92721333/211858533-31b3daf2-8a00-4c1c-b04b-eacd41d1ee84.JPG">
 </p>
 
+Une fois que vous arrivez sur le site vous êtes sur notre page d'inscription, inscrivez-vous en utilisant de préferance avec votre adresse amu

@@ -1,4 +1,5 @@
 package interfaces.saelavrai;
+import interfaces.saelavrai.DAO.Postgresql;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +72,8 @@ public class AccueilMain extends Application {
         stage.show();
     }
     public static void main(String[] args) {
+        Postgresql.connect();
+        Serveur.fetchClients();
         launch();
     }
 

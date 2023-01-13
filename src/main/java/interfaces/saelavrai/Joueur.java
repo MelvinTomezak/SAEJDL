@@ -1,14 +1,23 @@
 package interfaces.saelavrai;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Joueur {
+
     private String nomJoueur;
     private int idJoueur;
     private int positionJoueur = 0;
+
+
+
+
 
     public Joueur (String nomJoueur, int idJoueur){
         setNomJoueur(nomJoueur);
         setIdJoueur(idJoueur);
     }
+
 
     public String getNomJoueur() {
         return this.nomJoueur;

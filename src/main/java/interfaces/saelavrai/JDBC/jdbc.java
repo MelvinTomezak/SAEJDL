@@ -8,7 +8,7 @@ public class jdbc {
     // Chaine de connexion
     static final String CONNECT_URL = "jdbc:postgresql://lucky.db.elephantsql.com/nyjbtmho";
     static final String LOGIN = "nyjbtmho";
-    static final String PASSWORD = "WvPejF_xswmg5DlxRD7vtm8ZyLx0BaXw";
+    static final String PASSWORD = "ILZMPn922ytEsKA_D5HGKSBIGo7rT7of";
     // La requete de test
     static final String QUERY = "SELECT *" + "FROM t_login;";
 

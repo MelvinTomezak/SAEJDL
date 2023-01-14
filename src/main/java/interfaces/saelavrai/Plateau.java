@@ -5,8 +5,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Plateau extends Application {
     private int de;
-    double largeur = 1000, hauteur = 550;
+    double hauteur = 550;
     AtomicInteger pos = new AtomicInteger();
 
     BorderPane leftBorderPane = new BorderPane();
@@ -33,13 +31,12 @@ public class Plateau extends Application {
 
     AtomicInteger numberOfMovesCircle1 = new AtomicInteger();
 
-    TextArea qs=new TextArea(); //Créer un nouveau champ pour la question
-    TextField an=new TextField(); //Créer un nouveau champ pour la réponse
-    Text a=new Text("Answer"); //Créer un nouveau texte intitulé "Answer"
-    Text q=new Text("Question");
+    TextArea question =new TextArea();
+    TextField answer =new TextField();
+    Text text =new Text("Answer");
+    Text textquestion =new Text("Question");
     private boolean reponse = false;
-    private Random random = new Random();
-    private int ligne = 9;
+    private final Random random = new Random();
     private int colonne = 0;
     static Circle pion1 = new Circle(10, Color.PURPLE);
     Circle pion2 = new Circle(10, Color.BLACK);
@@ -79,10 +76,11 @@ public class Plateau extends Application {
                 plateau.setAlignment(Pos.CENTER);
             }
         }
-        plateau.add(pion1,colonne,ligne);
-        plateau.add(pion2,colonne,ligne);
-        plateau.add(pion3,colonne,ligne);
-        plateau.add(pion4,colonne,ligne);
+        int ligne = 9;
+        plateau.add(pion1,colonne, ligne);
+        plateau.add(pion2,colonne, ligne);
+        plateau.add(pion3,colonne, ligne);
+        plateau.add(pion4,colonne, ligne);
         pion1.setTranslateX(15);
         pion1.setTranslateY(15);
         pion2.setTranslateX(15);
@@ -104,105 +102,97 @@ public class Plateau extends Application {
         Button check=new Button("Check");
 
 
-        De.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                LancerDe();
-                if (reponse == true) {
-                    mouvpiont();
+        De.setOnAction(actionEvent -> {
+            LancerDe();
+
+
+            question.setEditable(true);
+            answer.setEditable(true);
+            check.setDisable(false);
+            String mode="";
+
+            if(getDe() >4){
+                mode="hard";
+                try {
+                    FetcherOperations.diff();
+                    textquestion.setText("Answer this question to move your circle:");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
-
-
-                qs.setEditable(true);
-                an.setEditable(true);
-                check.setDisable(false);
-                String mode="";
-
-                if(getDe() >4){
-                    mode="hard";
+            }
+            if(mode.equals(""))
+                if(getDe()<=2){
+                    mode="easy";
                     try {
-                        FetcherOperations.diff();
-                        q.setText("Answer this question to move your circle:");
+                        FetcherOperations.easy();
+                        textquestion.setText("Answer this question to move your circle:");
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 }
-                if(mode.equals(""))
-                    if(getDe()<=2){
-                        mode="easy";
-                        try {
-                            FetcherOperations.easy();
-                            q.setText("Answer this question to move your circle:");
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
+            if(mode.equals(""))
+                if(getDe()>2 && getDe()<=4){
+                    mode="medium";
+                    try {
+                        FetcherOperations.med();
+                        textquestion.setText("Answer this question to move your circle:");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
                     }
-                if(mode.equals(""))
-                    if(getDe()>2 && getDe()<=4){
-                        mode="medium";
-                        try {
-                            FetcherOperations.med();
-                            q.setText("Answer this question to move your circle:");
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                qs.setText(FetcherOperations.question);
+                }
+            question.setText(FetcherOperations.question);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please answer the question to continue..", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please answer the question to continue..", ButtonType.OK);
+            alert.show();
+        });
+
+        check.setOnAction(ae -> {
+
+            int flag = 0;
+            question.setText(FetcherOperations.question);
+            if (answer.getText().equalsIgnoreCase(FetcherOperations.answer)) {
+                flag = 1;
+                reponse = true;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
                 alert.show();
+            }
+            question.setText("");
+            answer.setText("");
+            textquestion.setText("Question:");
+            question.setEditable(false);
+            answer.setEditable(false);
+            check.setDisable(true);
+            if (flag == 0) {
+                reponse = false;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
+                alert.show();
+            }
+            if (reponse) {
+                mouvpiont();
             }
         });
 
-        check.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent ae) {
-                int flag = 0;
-                qs.setText(FetcherOperations.question);
-                if (an.getText().equalsIgnoreCase(FetcherOperations.answer)) {
-                    flag = 1;
-                    reponse = true;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
-                    alert.show();
-                }
 
-                qs.setText("");
-                an.setText("");
-                q.setText("Question:");
-                //les champs de question et de réponse sur non modifiables
-                qs.setEditable(false);
-                an.setEditable(false);
-                check.setDisable(true);
+        graphContainer.getChildren().add(textquestion);
+        question.setMaxWidth(300);
+        question.setMaxHeight(hauteur / 2 - 50);
+        graphContainer.getChildren().add(question);
+        question.setEditable(false);
 
-// si la réponse donnée est incorrecte, affiche une alerte
-                if (flag == 0) {
-                    reponse = false;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
-                    alert.show();
-                }
-            } });
+        graphContainer.getChildren().add(text);
 
+        answer.setMaxWidth(300);
+        answer.setMaxHeight(hauteur / 2 - 50);
+        graphContainer.getChildren().add(answer);
+        answer.setEditable(false);
 
-        //Ajout des éléments graphiques
-        graphContainer.getChildren().add(q); //Ajoute le texte q au graphContainer
-        qs.setMaxWidth(300); //Définit la largeur maximale à 300
-        qs.setMaxHeight(hauteur / 2 - 50); //Définit la hauteur maximale à la hauteur divisée par 2 et moins 50
-        graphContainer.getChildren().add(qs); //Ajoute le TextField qs au graphContainer
-        qs.setEditable(false); // Rend le TextField qs non éditable
+        Text a1=new Text(".");
+        graphContainer.getChildren().add(a1);
 
-        graphContainer.getChildren().add(a); //Ajoute le texte a au graphContainer
-
-        an.setMaxWidth(300); //Définit la largeur maximale à 300
-        an.setMaxHeight(hauteur / 2 - 50); //Définit la hauteur maximale à la hauteur divisée par 2 et moins 50
-        graphContainer.getChildren().add(an); //Ajoute le TextField an au graphContainer
-        an.setEditable(false); //Rend le TextField an non éditable
-
-        Text a1=new Text("."); //Création d'un nouveau Text
-        graphContainer.getChildren().add(a1); //Ajoute le Text a1 au graphContainer
-
-        check.setMaxWidth(300); //Définit la largeur maximale à 300
-        check.setMaxHeight(hauteur / 2 - 50); //Définit la hauteur maximale à la hauteur divisée par 2 et moins 50
-        graphContainer.getChildren().add(check); //Ajout du TextField check au graphContainer
-        check.setDisable(true); //Rend le TextField check non éditable
+        check.setMaxWidth(300);
+        check.setMaxHeight(hauteur / 2 - 50);
+        graphContainer.getChildren().add(check);
+        check.setDisable(true);
         leftBorderPane.setCenter(graphContainer);
         Scene scene = new Scene(borderPane, 1000,700);
         scene.setFill(Color.LIGHTGREEN);
@@ -210,14 +200,6 @@ public class Plateau extends Application {
         stage.setTitle("Goose Game");
         stage.show();
 
-    }
-
-    public  Circle getPion1() {
-        return pion1;
-    }
-
-    public static void setPion1(Circle pion1) {
-        Plateau.pion1 = pion1;
     }
 
     public void LancerDe(){
@@ -231,7 +213,6 @@ public class Plateau extends Application {
         timeline.setAutoReverse(true);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.3), ev -> {
 
-            // while(numberOfSquaresTravelledCircle1.get() < 23) {
             if (numberOfSquaresTravelledCircle1.get() == 99) {
                 System.out.println("joueur 1 a gagné");
                 timeline.stop();
@@ -239,8 +220,7 @@ public class Plateau extends Application {
 
             if (numberOfMovesCircle1.get() <= this.de - 1) {
 
-/////pattern 1
-                if (numberOfSquaresTravelledCircle1.get() <= 9) {
+                if (numberOfSquaresTravelledCircle1.get() < 10) {
                     pion1.setTranslateX(pion1.getTranslateX() + 50);
                     pos.set(pos.get() + 1);
                     numberOfSquaresTravelledCircle1.set(pos.get());
@@ -257,7 +237,7 @@ public class Plateau extends Application {
                     System.out.println(numberOfSquaresTravelledCircle1.get());
 
 
-                } else if (numberOfSquaresTravelledCircle1.get() >= 10 && numberOfSquaresTravelledCircle1.get() < 19) {
+                } else if (numberOfSquaresTravelledCircle1.get() >= 9 && numberOfSquaresTravelledCircle1.get() < 19) {
                     pion1.setTranslateX(pion1.getTranslateX() - 50);
 
 
@@ -448,10 +428,7 @@ public class Plateau extends Application {
         timeline.getKeyFrames().add(kf);
         System.out.println("Le de a fait "+ getDe());
         timeline.play();
-
     }
-
-
     public int getDe() {
         return de;
     }

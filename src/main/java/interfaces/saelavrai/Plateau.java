@@ -1,7 +1,6 @@
 package interfaces.saelavrai;
 
 import interfaces.saelavrai.DAO.FetcherOperations;
-import interfaces.saelavrai.Jeu.Joueur;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

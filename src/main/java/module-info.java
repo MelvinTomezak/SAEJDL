@@ -10,5 +10,4 @@ module interfaces.saelavrai {
 
     opens interfaces.saelavrai to javafx.fxml;
     exports interfaces.saelavrai;
-    opens interfaces.saelavrai.Jeu to javafx.fxml;
 }

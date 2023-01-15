@@ -1,6 +1,7 @@
 package interfaces.saelavrai;
 
 import interfaces.saelavrai.DAO.FetcherOperations;
+import interfaces.saelavrai.Jeu.Joueur;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,21 +27,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Plateau extends Application {
     private int de;
     double hauteur = 550;
-
-    static int in;
     int nbjoueur = 4;
 
-    Joueur joueurs[] = new Joueur[1];
-    Circle pions[] = new Circle[nbjoueur];
-    Circle joueursCouleur[];
-    Color couleur[] = new Color[4];
+    Joueur[] joueurs = new Joueur[1];
+    Circle[] pions = new Circle[nbjoueur];
+    Circle[] joueursCouleur;
+    Color[] couleur = new Color[4];
 
     AtomicInteger pos = new AtomicInteger();
 
     BorderPane leftBorderPane = new BorderPane();
     AtomicInteger[] numberOfSquaresTravelledCircle = new AtomicInteger[nbjoueur];
-
-//    AtomicInteger numberOfSquaresTravelledCircle1= new AtomicInteger(pos.get());
 
     AtomicInteger numberOfMovesCircle1 = new AtomicInteger();
 
@@ -85,25 +82,15 @@ public class Plateau extends Application {
             }
         }
         int ligne = 9;
-        couleur[0] = Color.RED;
-        couleur[1] = Color.ORANGE;
-        couleur[2] = Color.GREEN;
-        couleur[3] = Color.rgb(30, 170, 255);
-
-
+        couleur[0] = Color.CYAN;
+        couleur[1] = Color.DARKBLUE;
+        couleur[2] = Color.BLACK;
+        couleur[3] = Color.WHITE;
         nbjoueur = Serveur.conSize;
 
         joueurs = new Joueur[nbjoueur];
         pions = new Circle[nbjoueur];
         joueursCouleur = new Circle[nbjoueur];
-
-
-          // joueurs[i] = new Joueur(plateau);
-
-
-//            joueurscouleurs[i] = new Circle();
-//            joueurscouleurs[i].setRadius(hauteur / 40);
-//            joueurscouleurs[i].setFill(couleur[i]);
 
             for (int i = 0; i < nbjoueur; ++i) {
                 pions[i] = new Circle();
@@ -122,10 +109,6 @@ public class Plateau extends Application {
         for (int j = 0; j < nbjoueur; j++) {
             numberOfSquaresTravelledCircle[j] = new AtomicInteger();
         }
-
-
-
-
             VBox vBox = new VBox();
             Button De = new Button("Lancer le dé");
             vBox.setAlignment(Pos.CENTER_LEFT);
@@ -138,19 +121,13 @@ public class Plateau extends Application {
             graphContainer.setFillWidth(true);
             Button check = new Button("Check");
 
-
-
         De.setOnAction(actionEvent -> {
             System.out.println("C'est au tour du joueur " + pions[joueurIndex] + " de lancer le dé ! ");
             LancerDe();
-
-
-
                 question.setEditable(true);
                     answer.setEditable(true);
                     check.setDisable(false);
                     String mode = "";
-
                     if (getDe() > 4) {
                         mode = "hard";
                         try {
@@ -181,13 +158,10 @@ public class Plateau extends Application {
                             }
                         }
                     question.setText(FetcherOperations.question);
-
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please answer the question to continue..", ButtonType.OK);
                     alert.show();
                 });
-
             check.setOnAction(ae -> {
-
                 int flag = 0;
                 question.setText(FetcherOperations.question);
                 if (answer.getText().equalsIgnoreCase(FetcherOperations.answer)) {
@@ -209,32 +183,24 @@ public class Plateau extends Application {
                 }
                 if (reponse) {
                     mouvpiont();
-
                 }
                 if (!reponse){
                     this.joueurIndex = (this.joueurIndex + 1) % pions.length;
-
                 }
-
             });
-
 
             graphContainer.getChildren().add(textquestion);
             question.setMaxWidth(300);
             question.setMaxHeight(hauteur / 2 - 50);
             graphContainer.getChildren().add(question);
             question.setEditable(false);
-
             graphContainer.getChildren().add(text);
-
             answer.setMaxWidth(300);
             answer.setMaxHeight(hauteur / 2 - 50);
             graphContainer.getChildren().add(answer);
             answer.setEditable(false);
-
             Text a1 = new Text(".");
             graphContainer.getChildren().add(a1);
-
             check.setMaxWidth(300);
             check.setMaxHeight(hauteur / 2 - 50);
             graphContainer.getChildren().add(check);
@@ -245,29 +211,22 @@ public class Plateau extends Application {
             stage.setScene(scene);
             stage.setTitle("Goose Game");
             stage.show();
-
         }
 
         public void LancerDe () {
             this.de = this.random.nextInt(6) + 1;
         }
-
-
     int joueurIndex = 0;
     public void mouvpiont() {
-
         AtomicInteger i = new AtomicInteger();
-
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.setAutoReverse(true);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.3), ev -> {
             Circle pion = pions[this.joueurIndex];
-
             if (numberOfMovesCircle1.get() <= this.de - 1) {
                 if (numberOfSquaresTravelledCircle[this.joueurIndex].get() < 9) {
                     pion.setTranslateX(pion.getTranslateX() + 50);
-
                     numberOfSquaresTravelledCircle[this.joueurIndex].set(numberOfSquaresTravelledCircle[this.joueurIndex].get() + 1);
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get() + 1);
                     System.out.println(numberOfSquaresTravelledCircle[this.joueurIndex].get());
@@ -278,11 +237,8 @@ public class Plateau extends Application {
                     numberOfSquaresTravelledCircle[this.joueurIndex].set(numberOfSquaresTravelledCircle[this.joueurIndex].get() + 1);
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get() + 1);
                     System.out.println(numberOfSquaresTravelledCircle[this.joueurIndex].get());
-
                 } else if (numberOfSquaresTravelledCircle[this.joueurIndex].get() >= 9 && numberOfSquaresTravelledCircle[this.joueurIndex].get() < 19) {
                     pion.setTranslateX(pion.getTranslateX() - 50);
-
-
                     numberOfSquaresTravelledCircle[this.joueurIndex].set(numberOfSquaresTravelledCircle[this.joueurIndex].get() + 1);
                     i.set(0);
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get() + 1);
@@ -295,7 +251,7 @@ public class Plateau extends Application {
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get() + 1);
                     System.out.println(numberOfSquaresTravelledCircle[this.joueurIndex].get());
                 }
-                /////pattern 2
+                //pattern 2
 
                 else if (numberOfSquaresTravelledCircle[this.joueurIndex].get() >= 19 && numberOfSquaresTravelledCircle[this.joueurIndex].get() < 29) {
                     pion.setTranslateX(pion.getTranslateX() + 50);
@@ -340,7 +296,7 @@ public class Plateau extends Application {
 
 
                 }
-                ///pattern 3
+                //pattern 3
                 else if (numberOfSquaresTravelledCircle[this.joueurIndex].get() >= 38 && numberOfSquaresTravelledCircle[this.joueurIndex].get() < 49) {
                     pion.setTranslateX(pion.getTranslateX() + 50);
 
@@ -382,7 +338,7 @@ public class Plateau extends Application {
                     System.out.println(numberOfSquaresTravelledCircle[this.joueurIndex].get());
 
                 }
-                ////pattern 4
+                //pattern 4
                 else if (numberOfSquaresTravelledCircle[this.joueurIndex].get() >= 59 && numberOfSquaresTravelledCircle[this.joueurIndex].get() < 69) {
                     pion.setTranslateX(pion.getTranslateX() + 50);
 
@@ -423,7 +379,7 @@ public class Plateau extends Application {
 
 
                 }
-                ////pattern 5
+                //pattern 5
                 else if (numberOfSquaresTravelledCircle[this.joueurIndex].get() >= 79 && numberOfSquaresTravelledCircle[this.joueurIndex].get() < 89) {
                     pion.setTranslateX(pion.getTranslateX() + 50);
 
@@ -453,9 +409,6 @@ public class Plateau extends Application {
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
 
                 }
-
-
-                //... La suite j'usqua qu'il est fait les 99 deplacement "donc a la case 100 et la win"
             } else if (numberOfMovesCircle1.get() == this.de) {
                 numberOfMovesCircle1.set(0);
                 timeline.stop();
@@ -465,9 +418,6 @@ public class Plateau extends Application {
                 Alert alert4 = new Alert(Alert.AlertType.INFORMATION, "\t\t\t\t\tGame has ended!\n", ButtonType.OK);
                 alert4.show();
             }
-
-
-
         });
 
         timeline.getKeyFrames().add(kf);

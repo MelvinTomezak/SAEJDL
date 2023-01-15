@@ -1,5 +1,4 @@
 package interfaces.saelavrai;
-
 import javafx.fxml.FXML;
 
 public class NoticeAnglaisController {

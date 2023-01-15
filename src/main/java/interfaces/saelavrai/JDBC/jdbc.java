@@ -5,11 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class jdbc {
-    // Chaine de connexion
     static final String CONNECT_URL = "jdbc:postgresql://lucky.db.elephantsql.com/nyjbtmho";
     static final String LOGIN = "nyjbtmho";
     static final String PASSWORD = "ILZMPn922ytEsKA_D5HGKSBIGo7rT7of";
-    // La requete de test
     static final String QUERY = "SELECT *" + "FROM t_login;";
 
     private static final Logger logger = Logger.getLogger("jdbc");

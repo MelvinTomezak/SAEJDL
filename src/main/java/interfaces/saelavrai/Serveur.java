@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Serveur {
 
-    static int conSize=0;
+    public static int conSize=0;
     static String[] Connections=new String[4];
 
     public static void main(String[] args){

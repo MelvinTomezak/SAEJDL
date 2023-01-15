@@ -14,7 +14,7 @@ import static java.lang.System.out;
 
 public class AccueilMain extends Application {
     @FXML
-    static StackPane stackPane;
+    public static StackPane stackPane;
     private static Socket socket;
 
     public AccueilMain() throws IOException {
@@ -84,8 +84,6 @@ public class AccueilMain extends Application {
         //client.init();
         //Serveur serveur = new Serveur(10007);
         //serveur.init();
-
-
     }
 
 }

@@ -10,7 +10,7 @@ import java.sql.Statement;
  * Les questions et réponses récupérées sont ensuite utilisées pour vérifier si l'utilisateur a
  * saisi la bonne réponse.
  */
-public class FetcherOperations {
+public class RecuperationBD {
     /**
      * Question et Réponse stockées par la classe
      */

@@ -12,30 +12,51 @@ import java.net.Socket;
 
 import static java.lang.System.out;
 
+/**
+ * Classe AccueilMain qui hérite de la classe Application et qui permet de gérer les différents écrans de l'application
+ * @author Les Avanturiers
+ */
 public class AccueilMain extends Application {
+
+    /**
+     * Attribut qui permet de stocker le stackPane
+     */
     @FXML
     public static StackPane stackPane;
+
+    /**
+     * Attribut qui permet de stocker le socket
+     */
     private static Socket socket;
 
+    /**
+     * Constructeur de la classe AccueilMain
+     *
+     */
     public AccueilMain() throws IOException {
 
     }
+
+    /**
+     * Méthode qui retourne le socket
+     *
+     * @return Socket
+     */
     public static Socket getClient(){
         return socket;
     }
 
-
-        /**
-         * La fonction start prend stage en paramètre, elle permet de charger nos différentes pages FXML dans des AnchorsPanes pour qu'on puisse gérer l'affichage par la suite.
-         * @param stage
-         * @throws IOException
-         */
+    /**
+     * Méthode qui a pour but d'initialiser le Stage et de gérer les différents écrans de l'application
+     *
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
         stackPane = new StackPane();
         AnchorPane Accueil = null;
         try {
-           Accueil= FXMLLoader. load(getClass().getResource("accueil.fxml"));
+            Accueil= FXMLLoader. load(getClass().getResource("accueil.fxml"));
         }
         catch (IOException e){
             e.printStackTrace();
@@ -71,19 +92,25 @@ public class AccueilMain extends Application {
         stage.setResizable(false);
         stage.show();
     }
+
+    /**
+     * Méthode main qui permet de lancer le jeu
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Postgresql.connect();
         Serveur.fetchClients();
         launch();
     }
 
+
+    /**
+     * Méthode qui permet d'initialiser le jeu et afficher un message quand un nouveau client se connecte
+     *
+     * @throws IOException
+     */
     public synchronized void init() throws IOException {
-
         out.println("New client ! ");
-        //Client client = new Client("127.0.0.1", 10007);
-        //client.init();
-        //Serveur serveur = new Serveur(10007);
-        //serveur.init();
     }
-
 }

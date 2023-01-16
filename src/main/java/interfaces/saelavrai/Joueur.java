@@ -3,29 +3,36 @@ package interfaces.saelavrai;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Joueur {
 
+/**
+ * Cette classe représente un joueur de jeu
+ * @author Les Avanturiers
+ */
+public class Joueur {
     private String nomJoueur;
     private int idJoueur;
     private int positionJoueur = 0;
-
-
-
-
-
+    /**
+     * Constructeur de la classe Joueur
+     * @param nomJoueur le nom du joueur
+     * @param idJoueur l'identifiant du joueur
+     */
     public Joueur (String nomJoueur, int idJoueur){
         setNomJoueur(nomJoueur);
         setIdJoueur(idJoueur);
     }
 
-
+    /**
+     * Retourne le nom du joueur
+     * @return le nom du joueur
+     */
     public String getNomJoueur() {
         return this.nomJoueur;
     }
 
     /**
-     * La fonction setNomJoueur vas permettre aux joueurs de rentrer un nom et ce nom ne pourra pas être une chaine de caractères vide.
-     * @param nomJoueur
+     * Définit le nom du joueur
+     * @param nomJoueur le nom du joueur
      */
     public void setNomJoueur(String nomJoueur) {
         if (nomJoueur == null || nomJoueur.isEmpty())
@@ -33,18 +40,34 @@ public class Joueur {
         this.nomJoueur = nomJoueur;
     }
 
+    /**
+     * Retourne l'identifiant du joueur
+     * @return l'identifiant du joueur
+     */
     public int getIdJoueur() {
         return idJoueur;
     }
 
+    /**
+     * Définit l'identifiant du joueur
+     * @param idJoueur l'identifiant du joueur
+     */
     public void setIdJoueur(int idJoueur) {
         this.idJoueur = idJoueur;
     }
 
+    /**
+     * Retourne la position du joueur
+     * @return la position du joueur
+     */
     public int getPositionJoueur() {
         return positionJoueur;
     }
 
+    /**
+     * Définit la position du joueur
+     * @param positionJoueur la position du joueur
+     */
     public void setPositionJoueur(int positionJoueur) {
         this.positionJoueur = positionJoueur;
     }

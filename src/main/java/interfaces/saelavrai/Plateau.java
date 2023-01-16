@@ -23,7 +23,10 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * Classe permet d'afficher le plateau de jeu ainsi que les pions et leurs déplacements.
+ * @author Les Avanturiers
+ */
 public class Plateau extends Application {
     public int de;
     public double hauteur = 550;
@@ -54,8 +57,8 @@ public class Plateau extends Application {
     BorderPane borderPane = new BorderPane();
     public Rectangle rect;
     @Override
-    public void start(Stage stage) {
 
+    public void start(Stage stage) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 rect = new Rectangle(50, 50);
@@ -216,11 +219,17 @@ public class Plateau extends Application {
             stage.setTitle("Goose Game");
             stage.show();
         }
-
+        /**
+         * Cette méthode permet de lancer un dé à 6 faces.
+         * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
+         */
         public void LancerDe () {
             this.de = this.random.nextInt(6) + 1;
         }
     public int playerIndex = 0;
+    /**
+     * Cette méthode permet de faire bouger les pions.
+     */
     public void mouvpion() {
         AtomicInteger i = new AtomicInteger();
         Timeline timeline = new Timeline();
@@ -429,10 +438,18 @@ public class Plateau extends Application {
         timeline.play();
     }
 
+    /**
+     * Récupère la valeur du dé
+     * @return la valeur de la variable de
+     */
     public int getDe() {
         return de;
     }
 
+    /**
+     * Point d'entrée de l'application.
+     * @param args arguments passés en ligne de commande
+     */
     public static void main(String[] args) {
         launch();
     }

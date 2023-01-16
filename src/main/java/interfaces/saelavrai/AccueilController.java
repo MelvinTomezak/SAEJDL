@@ -3,12 +3,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import java.io.IOException;
+/**
+ * Classe controller pour l'accueil qui fait appel à des méthodes pour naviguer entre les différentes vues.
+ * @author Les Avanturiers
+ */
 public class AccueilController {
-    @FXML
-
     /**
-     * La fonction ONotice est relié au button notice de la page accueil.fxml et elle permet de pouvoir afficher la page notice en appuyant sur le button notice. On va rendre visible cette page et ne plus rendre visible les autres.
+     * Méthode qui fait appel à la vue Notice
      */
+    @FXML
     public void ONotice (){
         AccueilMain.stackPane.getChildren().get(0).setVisible(false);
         AccueilMain.stackPane.getChildren().get(1).setVisible(false);
@@ -17,14 +20,14 @@ public class AccueilController {
     }
 
     /**
-     * La fonction LeaveG va permettre de fermer notre application en appuyant sur le button Leave Game.
+     * Méthode qui quitte le jeu
      */
     public void LeaveG (){
         Platform.exit();
     }
+
     /**
-     * La fonction Loginn est reliée au button Login de la page d'Accueil qui va permettre d'ouvrir une page internet grâce à un URL (cela sera liée par la suite à notre register pour les joueurs).
-     * @throws IOException
+     * Méthode qui ouvre le lien du site web
      */
     public void Loginn() throws IOException {
         String url = "http://adminsae.alwaysdata.net/";
@@ -32,8 +35,7 @@ public class AccueilController {
     }
 
     /**
-     * La fonction Score est reliée au button Score de la page d'Accueil qui va permettre d'afficher les scores de chaque joueur après une partie.
-
+     * Méthode qui fait appel à la vue Score
      */
     public void Score(){
         AccueilMain.stackPane.getChildren().get(0).setVisible(false);
@@ -41,10 +43,10 @@ public class AccueilController {
         AccueilMain.stackPane.getChildren().get(2).setVisible(true);
         AccueilMain.stackPane.getChildren().get(3).setVisible(false);
     }
-    /**
-     * La fonction Start est reliée au button Start de la page d'Accueil qui va permettre d'afficher la fenêtre de jeu pour pouvoir lancer le jeu.
-     */
 
+    /**
+     * Méthode qui démarre le jeu
+     */
     public void Start()  {
         AccueilMain.stackPane.getChildren().get(0).setVisible(false);
         AccueilMain.stackPane.getChildren().get(1).setVisible(true);
@@ -55,6 +57,9 @@ public class AccueilController {
         plateau.start(stage);
     }
 
+    /**
+     * Méthode qui ouvre le lien du dépôt GitHub
+     */
     public void GitHub() throws IOException {
         String url = "https://github.com/MelvinTomezak/SAEJDL";
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));

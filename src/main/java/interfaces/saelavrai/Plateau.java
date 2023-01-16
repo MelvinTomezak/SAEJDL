@@ -1,6 +1,6 @@
 package interfaces.saelavrai;
 
-import interfaces.saelavrai.DAO.FetcherOperations;
+import interfaces.saelavrai.DAO.RecuperationBD;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -37,6 +37,9 @@ public class Plateau extends Application {
     Circle[] joueursCouleur;
     Color[] couleur = new Color[4];
 
+    LeDe leDe = new LeDe(50, 50);
+
+
     AtomicInteger pos = new AtomicInteger();
 
     BorderPane leftBorderPane = new BorderPane();
@@ -57,7 +60,10 @@ public class Plateau extends Application {
     BorderPane borderPane = new BorderPane();
     public Rectangle rect;
     @Override
-
+/**
+ * La fonction start permet de créer le plateau, les pions ainsi que les zone où seront afficher les questions et où les réponses seront saisies.
+ * Il y a aussi l'appelle des questions qui seront afficher et la création de la stage.
+ */
     public void start(Stage stage) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -96,136 +102,147 @@ public class Plateau extends Application {
         pions = new Circle[nbjoueur];
         joueursCouleur = new Circle[nbjoueur];
 
-            for (int i = 0; i < nbjoueur; ++i) {
-                pions[i] = new Circle();
-                pions[i].setRadius(hauteur / 50);
-                pions[i].setFill(Color.rgb(0, 0, 0, 0.0));
-                DropShadow innerShadow = new DropShadow(3, Color.BLACK);
-                innerShadow.setInput(new InnerShadow(2, Color.BLACK));
-                pions[i].setEffect(innerShadow);
-                pions[i].setTranslateX(15);
-                pions[i].setTranslateY(15);
-                plateau.add(pions[i], colonne, ligne);
-                pions[i].setFill(couleur[i]);
+        for (int i = 0; i < nbjoueur; ++i) {
+            pions[i] = new Circle();
+            pions[i].setRadius(hauteur / 50);
+            pions[i].setFill(Color.rgb(0, 0, 0, 0.0));
+            DropShadow innerShadow = new DropShadow(3, Color.BLACK);
+            innerShadow.setInput(new InnerShadow(2, Color.BLACK));
+            pions[i].setEffect(innerShadow);
+            pions[i].setTranslateX(15);
+            pions[i].setTranslateY(15);
+            plateau.add(pions[i], colonne, ligne);
+            pions[i].setFill(couleur[i]);
 
-            }
+
+        }
 
         for (int j = 0; j < nbjoueur; j++) {
             numberOfSquaresTravelledCircle[j] = new AtomicInteger();
         }
-            VBox vBox = new VBox();
-            Button De = new Button("Lancer le dé");
-            vBox.setAlignment(Pos.CENTER_LEFT);
-            vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-            vBox.getChildren().addAll(plateau, De, leftBorderPane);
-            borderPane.setCenter(vBox);
+        VBox vBox = new VBox();
 
-            VBox graphContainer = new VBox();
-            graphContainer.setAlignment(Pos.CENTER_LEFT);
-            graphContainer.setFillWidth(true);
-            Button check = new Button("Check");
+        Button De = new Button("Lancer le dé");
+        De.setId("button De");
+        vBox.setAlignment(Pos.CENTER_LEFT);
+
+
+        vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        vBox.getChildren().addAll(plateau,leDe, De, leftBorderPane);
+
+
+        borderPane.setCenter(vBox);
+
+        VBox graphContainer = new VBox();
+        graphContainer.setAlignment(Pos.TOP_LEFT);
+        graphContainer.setFillWidth(true);
+        Button check = new Button("Check");
 
         De.setOnAction(actionEvent -> {
             System.out.println("C'est au tour du joueur " + pions[playerIndex] + " de lancer le dé ! ");
             LancerDe();
-                    question.setEditable(false);
-                    answer.setEditable(true);
-                    check.setDisable(false);
-                    De.setDisable(true);
-                    String mode = "";
-                    if (getDe() > 4) {
-                        mode = "hard";
-                        try {
-                            FetcherOperations.diff();
-                            textquestion.setText("Answer this question to move your circle:");
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    if (mode.equals(""))
-                        if (getDe() <= 2) {
-                            mode = "easy";
-                            try {
-                                FetcherOperations.easy();
-                                textquestion.setText("Answer this question to move your circle:");
-                            } catch (SQLException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    if (mode.equals(""))
-                        if (getDe() == 3 || getDe() == 4) {
-                            mode = "medium";
-                            try {
-                                FetcherOperations.med();
-                                textquestion.setText("Answer this question to move your circle:");
-                            } catch (SQLException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                    question.setText(FetcherOperations.question);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please answer the question to continue..", ButtonType.OK);
-                    alert.show();
-                });
-            check.setOnAction(ae -> {
-                int flag = 0;
-                question.setText(FetcherOperations.question);
-                if (answer.getText().equalsIgnoreCase(FetcherOperations.answer)) {
-                    flag = 1;
-                    reponse = true;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
-                    alert.show();
-                }
-                question.setText("");
-                answer.setText("");
-                textquestion.setText("Question:");
+            leDe.setShow(true);
+            leDe.update(getDe());
 
-                if (flag == 0) {
-                    reponse = false;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
-                    alert.show();
-                }
-                if (reponse) {
-                    mouvpion();
-                    question.setEditable(true);
-                    De.setDisable(false);
-                }
-                if (!reponse){
-                    this.playerIndex = (this.playerIndex + 1) % pions.length;
-                    question.setEditable(true);
-                    De.setDisable(false);
-                }
-            });
-
-            graphContainer.getChildren().add(textquestion);
-            question.setMaxWidth(300);
-            question.setMaxHeight(hauteur / 2 - 50);
-            graphContainer.getChildren().add(question);
             question.setEditable(false);
-            graphContainer.getChildren().add(text);
-            answer.setMaxWidth(300);
-            answer.setMaxHeight(hauteur / 2 - 50);
-            graphContainer.getChildren().add(answer);
-            answer.setEditable(false);
-            Text a1 = new Text(".");
-            graphContainer.getChildren().add(a1);
-            check.setMaxWidth(300);
-            check.setMaxHeight(hauteur / 2 - 50);
-            graphContainer.getChildren().add(check);
-            check.setDisable(true);
-            leftBorderPane.setCenter(graphContainer);
-            Scene scene = new Scene(borderPane, 1000, 700);
-            scene.setFill(Color.LIGHTGREEN);
-            stage.setScene(scene);
-            stage.setTitle("Goose Game");
-            stage.show();
-        }
-        /**
-         * Cette méthode permet de lancer un dé à 6 faces.
-         * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
-         */
-        public void LancerDe () {
-            this.de = this.random.nextInt(6) + 1;
-        }
+            answer.setEditable(true);
+            check.setDisable(false);
+            De.setDisable(true);
+            String mode = "";
+            if (getDe() > 4) {
+                mode = "hard";
+                try {
+                    RecuperationBD.diff();
+                    textquestion.setText("Answer this question to move your circle:");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            if (mode.equals(""))
+                if (getDe() <= 2) {
+                    mode = "easy";
+                    try {
+                        RecuperationBD.easy();
+                        textquestion.setText("Answer this question to move your circle:");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            if (mode.equals(""))
+                if (getDe() == 3 || getDe() == 4) {
+                    mode = "medium";
+                    try {
+                        RecuperationBD.med();
+                        textquestion.setText("Answer this question to move your circle:");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            question.setText(RecuperationBD.question);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please answer the question to continue..", ButtonType.OK);
+            alert.show();
+        });
+        check.setOnAction(ae -> {
+            int flag = 0;
+            question.setText(RecuperationBD.question);
+            if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
+                flag = 1;
+                reponse = true;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
+                alert.show();
+            }
+            question.setText("");
+            answer.setText("");
+            textquestion.setText("Question:");
+
+            if (flag == 0) {
+                reponse = false;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
+                alert.show();
+            }
+            if (reponse) {
+                mouvpion();
+                question.setEditable(true);
+                De.setDisable(false);
+            }
+            if (!reponse){
+                this.playerIndex = (this.playerIndex + 1) % pions.length;
+                question.setEditable(true);
+                De.setDisable(false);
+            }
+        });
+
+        graphContainer.getChildren().add(textquestion);
+        question.setMaxWidth(300);
+        question.setMaxHeight(hauteur / 2 - 50);
+        graphContainer.getChildren().add(question);
+        question.setEditable(false);
+        graphContainer.getChildren().add(text);
+        answer.setMaxWidth(300);
+        answer.setMaxHeight(hauteur / 2 - 50);
+        graphContainer.getChildren().add(answer);
+        answer.setEditable(false);
+        Text a1 = new Text(".");
+        graphContainer.getChildren().add(a1);
+        check.setMaxWidth(300);
+        check.setMaxHeight(hauteur / 2 - 50);
+        graphContainer.getChildren().add(check);
+        check.setDisable(true);
+        leftBorderPane.setCenter(graphContainer);
+        Scene scene = new Scene(borderPane, 1000, 600);
+        scene.setFill(Color.LIGHTGREEN);
+        stage.setScene(scene);
+        stage.setTitle("Goose Game");
+        stage.show();
+    }
+    /**
+     * Cette méthode permet de lancer un dé à 6 faces.
+     * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
+     */
+    public void LancerDe () {
+        this.de = this.random.nextInt(6) + 1;
+    }
     public int playerIndex = 0;
     /**
      * Cette méthode permet de faire bouger les pions.
@@ -324,7 +341,6 @@ public class Plateau extends Application {
 
                     pion.setTranslateY(pion.getTranslateY() - 50);
                     i.set(1);
-
                     pos.set(pos.get() + 1);
                     numberOfSquaresTravelledCircle[this.playerIndex].set(numberOfSquaresTravelledCircle[this.playerIndex].get() + 1);
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
@@ -452,5 +468,6 @@ public class Plateau extends Application {
      */
     public static void main(String[] args) {
         launch();
+
     }
 }

@@ -19,17 +19,17 @@ import java.util.concurrent.TimeoutException;
 
 // Test qui ne marche pas à cause d'un changement à réparer.
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestAccueil {
+public class TestNoticeAnglais {
     Stage stage;
 
     @Start
     public void start() {
         Platform.runLater(() -> {
-            TestAccueil.this.stage = new Stage();
+            TestNoticeAnglais.this.stage = new Stage();
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new AccueilMain().start(TestAccueil.this.stage);
+                        new AccueilMain().start(TestNoticeAnglais.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -57,15 +57,15 @@ public class TestAccueil {
     }
 
     @Test
-    void testStart(FxRobot robot) {
+    void testAccueil(FxRobot robot) {
         AccueilMain.launch(AccueilMain.class);
-        Button myButton = robot.lookup("#Start").queryAs(Button.class);
+        Button myButton = robot.lookup("#Accueil").queryAs(Button.class);
         robot.clickOn(myButton);
     }
     @Test
-    void testNotice(FxRobot robot) {
+    void testTranslate(FxRobot robot) {
         AccueilMain.launch(AccueilMain.class);
-        Button myButton = robot.lookup("#Notice").queryAs(Button.class);
+        Button myButton = robot.lookup("#Translate").queryAs(Button.class);
         robot.clickOn(myButton);
     }
 
@@ -74,5 +74,4 @@ public class TestAccueil {
 
     @Test
     public void shouldWindowWidthEquals1000() { assertEquals(  1000, stage.getScene().getWidth()); }
-
 }

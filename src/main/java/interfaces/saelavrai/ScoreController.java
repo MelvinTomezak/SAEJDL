@@ -1,5 +1,9 @@
 package interfaces.saelavrai;
 import javafx.fxml.FXML;
+/**
+ * Cette classe est le controller des scores
+ * @author Les Avanturiers
+ */
 public class ScoreController {
     @FXML
     /**

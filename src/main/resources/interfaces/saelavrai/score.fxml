@@ -9,16 +9,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.ScoreController">
    <children>
-      <TextField editable="false" alignment="CENTER" layoutX="145.0" layoutY="14.0" style="-fx-background-color: transparent;" text="Score">
+      <TextField alignment="CENTER" editable="false" layoutX="345.0" layoutY="7.0" style="-fx-background-color: transparent;" text="Score">
          <font>
             <Font size="25.0" />
          </font>
       </TextField>
-      <ImageView layoutX="550.0" layoutY="350.0">
+      <ImageView layoutX="950.0" layoutY="550.0">
          <image>
             <Image url="@../../images/home_icon.png" /> <!--https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9A0KkxYnXKZRARtW20VLbVvReNC2shbOnw&usqp=CAU-->
          </image>
       </ImageView>
-      <Button fx:id="Accueil" layoutX="550.0" layoutY="350.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Score" textFill="#ffffff00" />
+      <Button fx:id="Accueil" layoutX="950.0" layoutY="550.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Score" textFill="#ffffff00" />
    </children>
 </AnchorPane>

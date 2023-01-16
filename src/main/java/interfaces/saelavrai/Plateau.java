@@ -230,7 +230,7 @@ public class Plateau extends Application {
         graphContainer.getChildren().add(check);
         check.setDisable(true);
         leftBorderPane.setCenter(graphContainer);
-        Scene scene = new Scene(borderPane, 1000, 600);
+        Scene scene = new Scene(borderPane, 1000, 700);
         scene.setFill(Color.LIGHTGREEN);
         stage.setScene(scene);
         stage.setTitle("Goose Game");

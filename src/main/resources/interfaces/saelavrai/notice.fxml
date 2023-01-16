@@ -17,13 +17,13 @@
       </TextField>
       <ImageView layoutX="950.0" layoutY="550.0">
          <image>
-            <Image url="@../../images/home_icon.png" />
+            <Image url="@../../images/home_icon.png" /> <!--https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9A0KkxYnXKZRARtW20VLbVvReNC2shbOnw&usqp=CAU-->
          </image>
       </ImageView>
       <Button fx:id="Accueil" layoutX="944.0" layoutY="550.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
       <ImageView fitHeight="67.0" fitWidth="138.0" layoutX="862.0">
          <image>
-            <Image url="@../../images/France.png" />
+            <Image url="@../../images/France.png" /> <!--data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAACWCAMAAAAfSh8xAAAAD1BMVEXOESb///8AJlR/kqnzxMlwvJaeAAAApUlEQVR4nO3PQREAIAgAMAT6ZzYEeOdja7DIuTpbOh4wNDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0/GJ4AUOofWVeGcMdAAAAAElFTkSuQmCC-->
          </image>
       </ImageView>
       <TextField layoutX="821.0" layoutY="67.0" prefHeight="21.0" prefWidth="179.0" style="-fx-background-color: transparent;" text="Pour traduire cliquer sur le drapeau">
@@ -38,7 +38,7 @@
          </font></Label>
       <ImageView fitHeight="237.0" fitWidth="261.0" layoutY="363.0" nodeOrientation="RIGHT_TO_LEFT">
          <image>
-            <Image url="@../../images/OieHome.JPG" />
+            <Image url="@../../images/OieHome.JPG" /> <!-- https://turbulus.com/jeux-en-ligne/coloriages-en-ligne/modele-oie.png-->
          </image>
       </ImageView>
    </children>

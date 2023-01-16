@@ -17,13 +17,13 @@
         </TextField>
         <ImageView layoutX="947.0" layoutY="545.0">
             <image>
-                <Image url="@../../images/home_icon.png" />
+                <Image url="@../../images/home_icon.png" /> <!--https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9A0KkxYnXKZRARtW20VLbVvReNC2shbOnw&usqp=CAU-->
             </image>
         </ImageView>
         <Button fx:id="Accueil" layoutX="947.0" layoutY="545.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
       <ImageView fitHeight="67.0" fitWidth="138.0" layoutX="862.0">
          <image>
-            <Image url="@../../images/Usflag.png" />
+            <Image url="@../../images/Usflag.png" /> <!--https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxGH8pAvcb5ncyXQ8_A_ohGl3ArUZrGlDxiA&usqp=CAU-->
          </image>
       </ImageView>
       <TextField layoutX="862.0" layoutY="68.0" prefHeight="21.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="for translate press the flag">
@@ -38,7 +38,7 @@
          </font></Label>
       <ImageView fitHeight="257.0" fitWidth="272.0" layoutY="343.0" nodeOrientation="RIGHT_TO_LEFT">
          <image>
-            <Image url="@../../images/OieHome.JPG" />
+            <Image url="@../../images/OieHome.JPG" /> <!-- https://turbulus.com/jeux-en-ligne/coloriages-en-ligne/modele-oie.png-->
          </image>
       </ImageView>
     </children>

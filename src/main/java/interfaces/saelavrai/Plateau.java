@@ -1,6 +1,6 @@
 package interfaces.saelavrai;
 
-import interfaces.saelavrai.DAO.FetcherOperations;
+import interfaces.saelavrai.DAO.RecuperationBD;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -36,6 +36,9 @@ public class Plateau extends Application {
     Circle[] pions = new Circle[nbjoueur];
     Circle[] joueursCouleur;
     Color[] couleur = new Color[4];
+
+    LeDe leDe = new LeDe(50, 50);
+
 
     AtomicInteger pos = new AtomicInteger();
 
@@ -108,27 +111,38 @@ public class Plateau extends Application {
                 plateau.add(pions[i], colonne, ligne);
                 pions[i].setFill(couleur[i]);
 
+
             }
 
         for (int j = 0; j < nbjoueur; j++) {
             numberOfSquaresTravelledCircle[j] = new AtomicInteger();
         }
             VBox vBox = new VBox();
+
             Button De = new Button("Lancer le dé");
+            De.setId("button De");
             vBox.setAlignment(Pos.CENTER_LEFT);
-            vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-            vBox.getChildren().addAll(plateau, De, leftBorderPane);
+
+
+        vBox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        vBox.getChildren().addAll(plateau,leDe, De, leftBorderPane);
+
+
             borderPane.setCenter(vBox);
 
             VBox graphContainer = new VBox();
-            graphContainer.setAlignment(Pos.CENTER_LEFT);
+            graphContainer.setAlignment(Pos.TOP_LEFT);
             graphContainer.setFillWidth(true);
             Button check = new Button("Check");
 
         De.setOnAction(actionEvent -> {
             System.out.println("C'est au tour du joueur " + pions[playerIndex] + " de lancer le dé ! ");
             LancerDe();
-                    question.setEditable(false);
+            leDe.setShow(true);
+            leDe.update(getDe());
+
+            question.setEditable(false);
                     answer.setEditable(true);
                     check.setDisable(false);
                     De.setDisable(true);
@@ -136,7 +150,7 @@ public class Plateau extends Application {
                     if (getDe() > 4) {
                         mode = "hard";
                         try {
-                            FetcherOperations.diff();
+                            RecuperationBD.diff();
                             textquestion.setText("Answer this question to move your circle:");
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
@@ -146,7 +160,7 @@ public class Plateau extends Application {
                         if (getDe() <= 2) {
                             mode = "easy";
                             try {
-                                FetcherOperations.easy();
+                                RecuperationBD.easy();
                                 textquestion.setText("Answer this question to move your circle:");
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
@@ -156,20 +170,20 @@ public class Plateau extends Application {
                         if (getDe() == 3 || getDe() == 4) {
                             mode = "medium";
                             try {
-                                FetcherOperations.med();
+                                RecuperationBD.med();
                                 textquestion.setText("Answer this question to move your circle:");
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
                         }
-                    question.setText(FetcherOperations.question);
+                    question.setText(RecuperationBD.question);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please answer the question to continue..", ButtonType.OK);
                     alert.show();
                 });
             check.setOnAction(ae -> {
                 int flag = 0;
-                question.setText(FetcherOperations.question);
-                if (answer.getText().equalsIgnoreCase(FetcherOperations.answer)) {
+                question.setText(RecuperationBD.question);
+                if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
                     flag = 1;
                     reponse = true;
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
@@ -213,7 +227,7 @@ public class Plateau extends Application {
             graphContainer.getChildren().add(check);
             check.setDisable(true);
             leftBorderPane.setCenter(graphContainer);
-            Scene scene = new Scene(borderPane, 1000, 700);
+            Scene scene = new Scene(borderPane, 1100, 800);
             scene.setFill(Color.LIGHTGREEN);
             stage.setScene(scene);
             stage.setTitle("Goose Game");
@@ -324,7 +338,6 @@ public class Plateau extends Application {
 
                     pion.setTranslateY(pion.getTranslateY() - 50);
                     i.set(1);
-
                     pos.set(pos.get() + 1);
                     numberOfSquaresTravelledCircle[this.playerIndex].set(numberOfSquaresTravelledCircle[this.playerIndex].get() + 1);
                     numberOfMovesCircle1.set(numberOfMovesCircle1.get()+1);
@@ -452,5 +465,6 @@ public class Plateau extends Application {
      */
     public static void main(String[] args) {
         launch();
+
     }
 }

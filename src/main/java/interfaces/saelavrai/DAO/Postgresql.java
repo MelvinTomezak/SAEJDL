@@ -20,8 +20,8 @@ public class Postgresql {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager
-                    .getConnection("jdbc:postgresql://lucky.db.elephantsql.com/nyjbtmho",
-                            "nyjbtmho", "ILZMPn922ytEsKA_D5HGKSBIGo7rT7of");
+                    .getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/itkrikdc",
+                            "itkrikdc", "4KdTrccy3LgH8IGDpq9P2qeZAdJo4l-n");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());

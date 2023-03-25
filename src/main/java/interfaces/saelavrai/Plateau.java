@@ -15,13 +15,19 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static interfaces.saelavrai.LoginController.Connections;
 
 /**
  * Classe permet d'afficher le plateau de jeu ainsi que les pions et leurs déplacements.
@@ -30,7 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Plateau extends Application {
     public int de;
     public double hauteur = 550;
-    public int nbjoueur = 4;
+    public static int nbjoueur = 4;
 
     Joueur[] joueurs = new Joueur[1];
     Circle[] pions = new Circle[nbjoueur];
@@ -43,14 +49,17 @@ public class Plateau extends Application {
     AtomicInteger pos = new AtomicInteger();
 
     BorderPane leftBorderPane = new BorderPane();
-    AtomicInteger[] numberOfSquaresTravelledCircle = new AtomicInteger[nbjoueur];
+    static AtomicInteger[] numberOfSquaresTravelledCircle = new AtomicInteger[nbjoueur];
 
-    public AtomicInteger numberOfMovesCircle1 = new AtomicInteger();
+    static public AtomicInteger numberOfMovesCircle1 = new AtomicInteger();
 
     public TextArea question =new TextArea();
     public TextField answer =new TextField();
     Text text =new Text("Answer");
     Text textquestion =new Text("Question");
+
+    public TextField AffichageJoeur =new TextField();
+
     private boolean reponse = false;
     private final Random random = new Random();
     public int colonne = 0;
@@ -96,11 +105,47 @@ public class Plateau extends Application {
         couleur[1] = Color.DARKBLUE;
         couleur[2] = Color.BLACK;
         couleur[3] = Color.WHITE;
-        nbjoueur = Serveur.conSize;
+      //  nbjoueur = Serveur.conSize;
+        nbjoueur = LoginController.conSize;
+
+
 
         joueurs = new Joueur[nbjoueur];
         pions = new Circle[nbjoueur];
         joueursCouleur = new Circle[nbjoueur];
+
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+
+        for (int i = 0; i < nbjoueur; ++i) {
+            Circle circle = new Circle(hauteur / 65);
+            circle.setFill(couleur[i]);
+
+            Label label = new Label("Nom joueur : " + Connections[i]);
+            label.setMinWidth(Region.USE_PREF_SIZE);
+            label.setAlignment(Pos.CENTER_LEFT);
+
+            gridPane.add(label, 0, i);
+            gridPane.add(circle, 1, i);
+        }
+
+        leftBorderPane.setLeft(gridPane);
+
+        // Création d'un VBox pour les informations du joueur
+//        VBox joueurInfo = new VBox();
+//        joueurInfo.setSpacing(10);
+//        joueurInfo.setAlignment(Pos.TOP_LEFT);
+
+        // Ajouter les noms des joueurs à la VBox
+//        for (int i = 0; i < nbjoueur; i++) {
+//            String playerName = "Joueur " + (i+1) + " - " + Connections[i]; // Modifier ici pour remplacer joueur.getNom() par Connections[i]
+//            Text playerNameText = new Text(playerName);
+//            Circle cercleJoueur = new Circle();
+//            cercleJoueur.setRadius(10);
+//            cercleJoueur.setFill(couleur[i]);
+//            joueurInfo.getChildren().add(playerNameText);
+//            joueurInfo.getChildren().add(cercleJoueur);
+//        }
 
         for (int i = 0; i < nbjoueur; ++i) {
             pions[i] = new Circle();
@@ -123,7 +168,9 @@ public class Plateau extends Application {
         VBox vBox = new VBox();
 
         Button De = new Button("Lancer le dé");
-        De.setId("button De");
+        De.setStyle("-fx-background-color: #0f100f; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-border-radius: 4px;");
+        De.getStyleClass().add("De-style");
+       // De.setId("button De");
         vBox.setAlignment(Pos.CENTER_LEFT);
 
 
@@ -131,13 +178,14 @@ public class Plateau extends Application {
 
         vBox.getChildren().addAll(plateau,leDe, De, leftBorderPane);
 
-
         borderPane.setCenter(vBox);
 
         VBox graphContainer = new VBox();
-        graphContainer.setAlignment(Pos.TOP_LEFT);
+        graphContainer.setAlignment(Pos.CENTER_LEFT);
         graphContainer.setFillWidth(true);
         Button check = new Button("Check");
+        check.setStyle("-fx-background-color: #0f100f; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-border-radius: 4px;");
+
 
         De.setOnAction(actionEvent -> {
             System.out.println("C'est au tour du joueur " + pions[playerIndex] + " de lancer le dé ! ");
@@ -196,6 +244,15 @@ public class Plateau extends Application {
             answer.setText("");
             textquestion.setText("Question:");
 
+            AffichageJoeur.getText();
+            question.setStyle("-fx-font-weight: bold; -fx-padding: 5px; -fx-background-color: #f1f1f1; -fx-border-radius: 5px; -fx-border-color: #262525; -fx-border-width: 1px; -fx-alignment: center-left;");
+            answer.setStyle("-fx-padding: 5px; -fx-background-color: #f9f9f9; -fx-border-radius: 5px; -fx-border-color: #131313; -fx-border-width: 1px; -fx-alignment: center-left;");
+            textquestion.setStyle("-fx-font-size: 16px; -fx-text-fill: #212121;");
+
+
+
+
+
             if (flag == 0) {
                 reponse = false;
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
@@ -205,6 +262,7 @@ public class Plateau extends Application {
                 mouvpion();
                 question.setEditable(true);
                 De.setDisable(false);
+
             }
             if (!reponse){
                 this.playerIndex = (this.playerIndex + 1) % pions.length;
@@ -213,6 +271,13 @@ public class Plateau extends Application {
             }
         });
 
+
+
+
+
+// Ajout du VBox à la gauche du borderPane
+        //leftBorderPane.setTop(joueurInfo);
+        BorderPane.setAlignment(gridPane, Pos.TOP_LEFT);
         graphContainer.getChildren().add(textquestion);
         question.setMaxWidth(300);
         question.setMaxHeight(hauteur / 2 - 50);
@@ -243,7 +308,7 @@ public class Plateau extends Application {
     public void LancerDe () {
         this.de = this.random.nextInt(6) + 1;
     }
-    public int playerIndex = 0;
+    public  int playerIndex = 0;
     /**
      * Cette méthode permet de faire bouger les pions.
      */

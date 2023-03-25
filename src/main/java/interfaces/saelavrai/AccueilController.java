@@ -1,8 +1,19 @@
 package interfaces.saelavrai;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
+
+import static interfaces.saelavrai.AccueilMain.stackPane;
+
 /**
  * Classe controller pour l'accueil qui fait appel à des méthodes pour naviguer entre les différentes vues.
  * @author Les Avanturiers
@@ -13,10 +24,12 @@ public class AccueilController {
      */
     @FXML
     public void ONotice (){
-        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(1).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(2).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(3).setVisible(true);
+        stackPane.getChildren().get(0).setVisible(false);
+        stackPane.getChildren().get(1).setVisible(false);
+        stackPane.getChildren().get(2).setVisible(false);
+        stackPane.getChildren().get(3).setVisible(true);
+        stackPane.getChildren().get(4).setVisible(false);
+
     }
 
     /**
@@ -38,24 +51,38 @@ public class AccueilController {
      * Méthode qui fait appel à la vue Score
      */
     public void Score(){
-        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(1).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(2).setVisible(true);
-        AccueilMain.stackPane.getChildren().get(3).setVisible(false);
+        stackPane.getChildren().get(0).setVisible(false);
+        stackPane.getChildren().get(1).setVisible(false);
+        stackPane.getChildren().get(2).setVisible(true);
+        stackPane.getChildren().get(3).setVisible(false);
+        stackPane.getChildren().get(4).setVisible(false);
+
     }
 
-    /**
-     * Méthode qui démarre le jeu
-     */
-    public void Start()  {
-        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(1).setVisible(true);
-        AccueilMain.stackPane.getChildren().get(2).setVisible(false);
-        AccueilMain.stackPane.getChildren().get(3).setVisible(false);
-        Stage stage = new Stage();
-        Plateau plateau = new Plateau();
-        plateau.start(stage);
-    }
+
+
+
+
+//        private Button connexionButton;
+
+//    @FXML
+//    public void initialize() {
+//        // Ajouter un événement de clic au bouton "Connexion"
+//        connexionButton.setOnAction(event -> {
+//            // Charger la page de connexion depuis le fichier FXML
+//            AnchorPane Connexion = null;
+//            try {
+//                Connexion = FXMLLoader.load(getClass().getResource("Connexion.fxml"));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            // Remplacer la page courante par la page de connexion
+//            StackPane stackPane = (StackPane) connexionButton.getScene().getRoot();
+//            stackPane.getChildren().set(0, Connexion);
+//        });
+//
+//    }
+
 
     /**
      * Méthode qui ouvre le lien du dépôt GitHub
@@ -64,4 +91,14 @@ public class AccueilController {
         String url = "https://github.com/MelvinTomezak/SAEJDL";
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
-}
+
+
+    public void Start() {
+        stackPane.getChildren().get(0).setVisible(false);
+        stackPane.getChildren().get(1).setVisible(false);
+        stackPane.getChildren().get(2).setVisible(false);
+        stackPane.getChildren().get(3).setVisible(false);
+        stackPane.getChildren().get(4).setVisible(true);
+
+    }
+    }

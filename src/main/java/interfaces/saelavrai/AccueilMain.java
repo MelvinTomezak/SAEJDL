@@ -81,7 +81,14 @@ public class AccueilMain extends Application {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        stackPane.getChildren().addAll(Notice,Accueil,Score,NoticeAnglais);
+        AnchorPane Connexion = null;
+        try {
+            Connexion = FXMLLoader.load(getClass().getResource("Connexion.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stackPane.getChildren().addAll(Notice,Accueil,Score,NoticeAnglais, Connexion);
+        Connexion.setVisible(false);
         Notice.setVisible(false);
         Accueil.setVisible(true);
         Score.setVisible(false);
@@ -100,7 +107,7 @@ public class AccueilMain extends Application {
      */
     public static void main(String[] args) {
         Postgresql.connect();
-        Serveur.fetchClients();
+       // Serveur.fetchClients();
         launch();
     }
 

@@ -63,6 +63,8 @@ public class LoginController implements Initializable {
 //                int id = rs.getInt("id");
                 String passwordFromDB = rs.getString("password");
 
+
+
                 // Création d'un nouvel objet t_login pour l'utilisateur connecté
                 t_login user = new t_login(email, passwordFromDB);
 
@@ -84,6 +86,10 @@ public class LoginController implements Initializable {
                 }
                 // Affichage de l'email de l'utilisateur connecté
                 errorMessage.setText("Vous êtes connecté avec l'adresse e-mail suivante : " + email);
+
+                // Effacer les champs d'entrée utilisateur
+                usernameField.setText("");
+                passwordField.setText("");
 
             } else {
                 // L'authentification a échoué, affichage d'un message d'erreur
@@ -107,9 +113,6 @@ public class LoginController implements Initializable {
                 System.err.println(e.getMessage());
             }
         }
-    }
-    public static List<String> fetchClients() {
-        return connectedUsers;
     }
 
     @Override

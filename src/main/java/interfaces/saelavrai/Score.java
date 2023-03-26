@@ -1,23 +1,24 @@
 package interfaces.saelavrai;
 public class Score {
     private int id;
-    private int email_usr;
+    private String emailuser;
     private int score;
     private String date_maj;
 
-    public Score(int id, int email_usr, int score, String date_maj) {
+    public Score(int id, String emailuser, int score, String date_maj) {
         this.id = id;
-        this.email_usr = email_usr;
+        this.emailuser = emailuser;
         this.score = score;
         this.date_maj = date_maj;
     }
+
 
     public int getId() {
         return id;
     }
 
-    public int getEmail_usr() {
-        return email_usr;
+    public String getEmailuser() {
+        return emailuser;
     }
 
     public int getScore() {

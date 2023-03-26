@@ -11,12 +11,12 @@
          <Font name="Bauhaus 93" size="30.0" />
       </font>
    </TextField>
-   <TableView fx:id="scoreTable" layoutX="67.0" layoutY="72.0" prefHeight="480.0" prefWidth="866.0">
+   <TableView fx:id="scoreTable" layoutX="201.0" layoutY="72.0" prefHeight="480.0" prefWidth="600.0">
       <columns>
          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
-         <TableColumn fx:id="email_usrColumn" prefWidth="75.0" text="User ID" />
-         <TableColumn fx:id="scoreColumn" prefWidth="75.0" text="Score" />
-         <TableColumn fx:id="dateColumn" prefWidth="275.0" text="Date" />
+         <TableColumn fx:id="emailuserColumn" prefWidth="200.0" text="User Email" />
+         <TableColumn fx:id="scoreColumn" prefWidth="100.0" text="Score" />
+         <TableColumn fx:id="dateColumn" prefWidth="225.0" text="Date" />
       </columns>
    </TableView>
    <ImageView layoutX="950.0" layoutY="550.0">

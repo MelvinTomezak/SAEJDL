@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
     private TableColumn<Score, Integer> idColumn;
 
     @FXML
-    private TableColumn<Score, Integer> email_usrColumn;
+    private TableColumn<Score, String> emailuserColumn;
 
     @FXML
     private TableColumn<Score, Integer> scoreColumn;
@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        email_usrColumn.setCellValueFactory(new PropertyValueFactory<>("email_usr"));
+        emailuserColumn.setCellValueFactory(new PropertyValueFactory<>("emailuser"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date_maj"));
 
@@ -45,10 +45,10 @@ import java.util.ResourceBundle;
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                int email_usr = rs.getInt("email_usr");
+                String emailuser = rs.getString("emailuser");
                 int score = rs.getInt("score");
                 String date_maj = rs.getString("date_maj");
-                scoreTable.getItems().add(new Score(id, email_usr, score, date_maj));
+                scoreTable.getItems().add(new Score(id, emailuser, score, date_maj));
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération des scores: " + e.getMessage());

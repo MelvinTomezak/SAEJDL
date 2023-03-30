@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1000" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.AccueilController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1000" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.AccueilController">
    <children>
       <Button fx:id="Notice" layoutX="14.0" layoutY="549.0" mnemonicParsing="false" onAction="#ONotice" prefHeight="37.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Notice" textAlignment="CENTER" underline="true">
          <font>
@@ -32,13 +32,13 @@
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="300.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="301.0" layoutY="301.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="300.0" layoutY="421.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
       <Button fx:id="Start" layoutX="300.0" layoutY="147.0" mnemonicParsing="false" onAction="#Start" prefHeight="39.0" prefWidth="426.0" style="-fx-background-color: transparent;" text="Start Game" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonl" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#LeaveG" prefHeight="39.0" prefWidth="426.0" style="-fx-background-color: transparent;" text="Leave Game" textAlignment="CENTER">
+      <Button fx:id="buttonl" layoutX="300.0" layoutY="420.0" mnemonicParsing="false" onAction="#LeaveG" prefHeight="39.0" prefWidth="426.0" style="-fx-background-color: transparent;" text="Leave Game" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -71,5 +71,14 @@
             <Image url="@../../images/OieHome.JPG" /> <!-- https://turbulus.com/jeux-en-ligne/coloriages-en-ligne/modele-oie.png-->
          </image>
       </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="37.0" layoutX="300.0" layoutY="282.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
+      <Button fx:id="buttonMulti" layoutX="300.0" layoutY="281.0" mnemonicParsing="false" onAction="#Multi" prefHeight="39.0" prefWidth="426.0" style="-fx-background-color: transparent;" text="Multiplayer" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

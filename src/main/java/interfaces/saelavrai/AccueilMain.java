@@ -87,12 +87,19 @@ public class AccueilMain extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        stackPane.getChildren().addAll(Notice,Accueil,Score,NoticeAnglais, Connexion);
+        AnchorPane Multi = null;
+        try{
+            Multi = FXMLLoader.load(getClass().getResource("salon.fxml"));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        stackPane.getChildren().addAll(Notice,Accueil,Score,NoticeAnglais, Connexion, Multi);
         Connexion.setVisible(false);
         Notice.setVisible(false);
         Accueil.setVisible(true);
         Score.setVisible(false);
         NoticeAnglais.setVisible(false);
+        Multi.setVisible(false);
         Scene scene = new Scene(stackPane);
         stage.setTitle("Goose Game");
         stage.setScene(scene);
@@ -107,7 +114,6 @@ public class AccueilMain extends Application {
      */
     public static void main(String[] args) {
         Postgresql.connect();
-       // Serveur.fetchClients();
         launch();
     }
 

@@ -29,7 +29,7 @@ public class AccueilController {
         stackPane.getChildren().get(2).setVisible(false);
         stackPane.getChildren().get(3).setVisible(true);
         stackPane.getChildren().get(4).setVisible(false);
-
+        stackPane.getChildren().get(5).setVisible(false);
     }
 
     /**
@@ -56,10 +56,18 @@ public class AccueilController {
         stackPane.getChildren().get(2).setVisible(true);
         stackPane.getChildren().get(3).setVisible(false);
         stackPane.getChildren().get(4).setVisible(false);
+        stackPane.getChildren().get(5).setVisible(false);
 
     }
 
-
+    public void Multi(){
+        stackPane.getChildren().get(0).setVisible(false);
+        stackPane.getChildren().get(1).setVisible(false);
+        stackPane.getChildren().get(2).setVisible(false);
+        stackPane.getChildren().get(3).setVisible(false);
+        stackPane.getChildren().get(4).setVisible(false);
+        stackPane.getChildren().get(5).setVisible(true);
+    }
 
 
 
@@ -99,6 +107,6 @@ public class AccueilController {
         stackPane.getChildren().get(2).setVisible(false);
         stackPane.getChildren().get(3).setVisible(false);
         stackPane.getChildren().get(4).setVisible(true);
-
+        stackPane.getChildren().get(5).setVisible(false);
     }
     }

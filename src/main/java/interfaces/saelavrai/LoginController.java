@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
             conn = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/itkrikdc",
                     "itkrikdc", "4KdTrccy3LgH8IGDpq9P2qeZAdJo4l-n");
 
-            String query = "SELECT * FROM t_login WHERE email=? AND password=?";
+            String query = "SELECT * FROM login WHERE email=? AND password=?";
             stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);

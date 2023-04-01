@@ -21,15 +21,15 @@ public class RecuperationBD {
      * Les requêtes SQL qui récupèrent des questions et leurs réponses depuis la base de données.
      * Les requêtes se basent sur les types de questions (difficiles, moyennes ou faciles).
      */
-    static final String difficult = "SELECT Question,Reponse FROM T_QUESTION_REPONSE WHERE TYPE_QUESTION = 'D' \n" +
+    static final String difficult = "SELECT Question,Reponse FROM questionreponse WHERE TYPE_QUESTION = 'D' \n" +
             "ORDER BY RANDOM()" + '\n' +
             "LIMIT 1;";
 
-    static final String medium = "SELECT Question,Reponse FROM T_QUESTION_REPONSE WHERE TYPE_QUESTION = 'M' \n" +
+    static final String medium = "SELECT Question,Reponse FROM questionreponse WHERE TYPE_QUESTION = 'M' \n" +
             "ORDER BY RANDOM()" + '\n' +
             "LIMIT 1;";
 
-    static final String easy = "SELECT Question,Reponse FROM T_QUESTION_REPONSE WHERE TYPE_QUESTION = 'F' \n" +
+    static final String easy = "SELECT Question,Reponse FROM questionreponse WHERE TYPE_QUESTION = 'F' \n" +
             "ORDER BY RANDOM()" + '\n' +
             "LIMIT 1;";
 

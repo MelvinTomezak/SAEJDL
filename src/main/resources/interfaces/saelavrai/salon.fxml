@@ -25,7 +25,13 @@
                 <Cursor fx:constant="OPEN_HAND" />
             </cursor>
         </Button>
-        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="800.0" layoutY="400.0">
+        <ImageView layoutX="950.0" layoutY="550.0">
+            <image>
+                <Image url="@../../images/home_icon.png" /> <!--https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa9A0KkxYnXKZRARtW20VLbVvReNC2shbOnw&usqp=CAU-->
+            </image>
+        </ImageView>
+        <Button fx:id="Accueil" layoutX="944.0" layoutY="550.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
+        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="800.0">
             <image>
                 <Image url="@../../images/OieHome.JPG" /> <!-- https://turbulus.com/jeux-en-ligne/coloriages-en-ligne/modele-oie.png-->
             </image>

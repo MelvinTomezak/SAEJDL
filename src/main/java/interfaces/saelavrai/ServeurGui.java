@@ -8,18 +8,18 @@ import java.net.*;
 import java.util.concurrent.*;
 
 public class ServeurGui implements ActionListener {
-    private JTextField messageField;
-    private JFrame frame;
-    private JTextArea messageArea;
-    private JButton startButton, stopButton, connectButton;
+    private final JTextField messageField;
+    private final JFrame frame;
+    private final JTextArea messageArea;
+    private final JButton startButton;
+    private final JButton stopButton;
     private JScrollPane scrollPane;
     private ServerSocket serverSocket;
-    private ExecutorService pool = Executors.newFixedThreadPool(10);
+    private final ExecutorService pool = Executors.newFixedThreadPool(10);
     private boolean isRunning = false;
 
     public ServeurGui() {
         frame = new JFrame("Server GUI");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         messageArea = new JTextArea(20, 50);
         messageArea.setEditable(false);
@@ -33,21 +33,14 @@ public class ServeurGui implements ActionListener {
         stopButton = new JButton("Stop");
         stopButton.addActionListener(this);
 
-        connectButton = new JButton("Connect");
-        connectButton.addActionListener(this);
-
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(startButton);
         buttonPanel.add(stopButton);
-        buttonPanel.add(connectButton);
         frame.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
         frame.pack();
         frame.setVisible(true);
         messageField = new JTextField(30);
-
-        JPanel messagePanel = new JPanel();
-        messagePanel.add(messageField);
 
         JButton sendButton = new JButton("Send");
         sendButton.addActionListener(new ActionListener() {
@@ -68,11 +61,6 @@ public class ServeurGui implements ActionListener {
                 }
             }
         });
-        messagePanel.add(sendButton);
-
-        frame.getContentPane().add(messagePanel, BorderLayout.NORTH);
-
-
     }
 
     public void actionPerformed(ActionEvent event) {
@@ -80,8 +68,6 @@ public class ServeurGui implements ActionListener {
             startServer();
         } else if (event.getSource() == stopButton) {
             stopServer();
-        } else if (event.getSource() == connectButton) {
-            connectToServer();
         }
     }
 
@@ -127,22 +113,6 @@ public class ServeurGui implements ActionListener {
                 stopButton.setEnabled(false);
             } catch (IOException e) {
                 messageArea.append("Failed to stop server: " + e.getMessage() + "\n");
-            }
-        }
-    }
-
-    private void connectToServer() {
-        String ipAddress = JOptionPane.showInputDialog(frame, "Enter the IP address of the server:");
-        if (ipAddress != null && !ipAddress.isEmpty()) {
-            try {
-                Socket socket = new Socket(ipAddress, 8080);
-                messageArea.append("Connected to server at " + ipAddress + "\n");
-
-                Serveur serverHandler = new Serveur(socket);
-                Thread thread = new Thread(String.valueOf(serverHandler));
-                thread.start();
-            } catch (IOException e) {
-                messageArea.append("Failed to connect to server: " + e.getMessage() + "\n");
             }
         }
     }

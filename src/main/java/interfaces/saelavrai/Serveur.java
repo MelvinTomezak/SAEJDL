@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class Serveur {
     private static final int PORT = 8080;
-    private static ExecutorService pool = Executors.newFixedThreadPool(10);
+    private static final ExecutorService pool = Executors.newFixedThreadPool(10);
     public Socket clientSocket;
 
     public Serveur(Socket clientSocket) {

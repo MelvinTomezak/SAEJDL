@@ -1,7 +1,7 @@
 package interfaces.saelavrai;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 
 public class SalonController {
     @FXML
@@ -9,6 +9,16 @@ public class SalonController {
             ServeurGui serveurGui = new ServeurGui();
     }
     public void JRoom() {
-            ServeurGui serveurGui = new ServeurGui();
+            ClientGui clientGui = new ClientGui();
         }
+
+    @FXML
+    public void Home (){
+        AccueilMain.stackPane.getChildren().get(0).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(1).setVisible(true);
+        AccueilMain.stackPane.getChildren().get(2).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(3).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(4).setVisible(false);
+        AccueilMain.stackPane.getChildren().get(5).setVisible(false);
+    }
 }

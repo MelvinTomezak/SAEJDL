@@ -16,6 +16,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.*;
@@ -23,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -30,8 +35,11 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
@@ -73,7 +81,7 @@ public class Plateau extends Application {
     private final Random random = new Random();
     public int colonne = 0;
     public int ligne = 9;
-
+    private Button check;
 
     GridPane plateau = new GridPane();
     BorderPane borderPane = new BorderPane();
@@ -81,15 +89,14 @@ public class Plateau extends Application {
     int points = 0;
 
     StringProperty labelValue = new SimpleStringProperty();
-    private static final int TIMER_DURATION = 200; // Durée en secondes du timer
+    private static final int TIMER_DURATION = 20; // Durée en secondes du timer
     private Timer timer;
     private int remainingTime = TIMER_DURATION;
     private ProgressBar timerProgressBar;
-    private Button check;
+
     private boolean timerIsRunning  = false;
 
 
-    int flag = 0;
 
 
 
@@ -148,8 +155,11 @@ public class Plateau extends Application {
         timerProgressBar.setProgress(1.0);
         gridPane.add(timerProgressBar, 0, 0, 2, 1);
 
-        //gridPane.add(timerLabel, 0, 0, 2, 1); // ajouter le label du timer sur 2 colonnes
 
+
+
+
+        int points = 0;
         for (int i = 0; i < nbjoueur; ++i) {
             Circle circle = new Circle(hauteur / 65);
             circle.setFill(couleur[i]);
@@ -163,25 +173,29 @@ public class Plateau extends Application {
                 throw new RuntimeException(e);
             }
 
+            Text text = new Text();
+            text.setText("Nom joueur : " + Connections[i] + " pt : " + points);
+            text.setTextAlignment(TextAlignment.LEFT);
 
-            Label label = new Label("Nom joueur : " + Connections[i] + " pt : " + points);
-            label.setMinWidth(Region.USE_PREF_SIZE);
-            label.setAlignment(Pos.CENTER_LEFT);
-            label.setText("Nom joueur : " + Connections[i] + " pt : " + points);
-            labelValue.set("Nouveau texte du Label");
-            // Déclarez une IntegerProperty pour stocker le nombre de points supplémentaires
-            IntegerProperty pointsProperty = new SimpleIntegerProperty();
 
-            // Liez la valeur de la propriété à la te xte du Label correspondant
-            label.textProperty().bind(pointsProperty.asString("Nom joueur : " + Connections[i] + " pt : %d"));
+            // Déclarer la variable points comme une propriété observable
+            IntegerProperty pointsProperty = new SimpleIntegerProperty(points);
 
-            // Mettez à jour la valeur de la propriété chaque fois qu'un joueur répond correctement à une question
+            // Créer la Label pour afficher la valeur de points
+            Label labelPoints = new Label();
+            labelPoints.textProperty().bind(pointsProperty.asString("Points : %d"));
+
+            // Ajouter la Label à un layout (par exemple un BorderPane)
+            BorderPane root = new BorderPane();
+            root.setTop(labelPoints);
+
+            // Mettre à jour la valeur de points chaque fois qu'un joueur répond correctement à une question
             if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
-
-                pointsProperty.set(pointsProperty.get() + points);
+                points += 10; // ou une autre valeur si vous souhaitez que la réponse correcte rapporte plus de points
+                pointsProperty.set(points);
             }
 
-            gridPane.add(label, 0, i + 1);
+            gridPane.add(text, 0, i + 1);
             gridPane.add(circle, 1, i + 1);
         }
 
@@ -248,12 +262,13 @@ public class Plateau extends Application {
             LancerDe();
             leDe.setShow(true);
             leDe.update(getDe());
-            // Vérifier si le timer est déjà en cours d'exécution
-            if (!timerIsRunning ) {
-                remainingTime = TIMER_DURATION;
+            remainingTime = TIMER_DURATION;
+            if (!timerIsRunning) {
                 startTimer();
-                timerIsRunning  = true;
+            } else {
+                timerProgressBar.setProgress(1.0);
             }
+
 
             question.setEditable(false);
             answer.setEditable(true);
@@ -319,8 +334,9 @@ public class Plateau extends Application {
         });
 
         check.setOnAction(ae -> {
-
+            System.out.println("ça marche");
             question.setText(RecuperationBD.question);
+            int flag = 0;
             if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
                 flag = 1;
                 reponse = true;
@@ -346,7 +362,7 @@ public class Plateau extends Application {
                 mouvpion();
                 question.setEditable(true);
                 De.setDisable(false);
-                points += points + 10;
+
 
 
             }
@@ -395,12 +411,10 @@ public class Plateau extends Application {
         sourceDataLine.close();
     }
 
+
     private void startTimer() {
 
-        // Réinitialiser remainingTime
-        if (timer != null) {
-            timer.cancel();
-        }
+        remainingTime = TIMER_DURATION;
         timerIsRunning = true;
 
         timer = new Timer();
@@ -408,35 +422,42 @@ public class Plateau extends Application {
             public void run() {
                 System.out.println("Le temps est écoulé!");
                 remainingTime = 0;
-                timerIsRunning = false; //  réinitialiser timerIsRunning
-                timer.cancel();
                 Platform.runLater(() -> {
                     timerProgressBar.setProgress(0.0);
                     check.fire();
-
                 });
-
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                    timerIsRunning = false;
+                }
             }
-        }, TIMER_DURATION * 1000 / 10, TIMER_DURATION * 1000 / 10);
+        }, TIMER_DURATION * 1000);
 
-        // Mettre à jour la barre de progression du timer toutes les 100 millisecondes
-        new Timer().schedule(new TimerTask() {
+        timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 double progress = (double) remainingTime / TIMER_DURATION;
                 Platform.runLater(() -> timerProgressBar.setProgress(progress));
                 if (remainingTime == 0) {
-                    timer.cancel();
+                    if (timer != null) {
+                        timer.cancel();
+                        timer = null;
+                        timerIsRunning = false;
+                    }
                 } else {
                     remainingTime--;
                 }
             }
-        }, 0, 100);
+        }, 0, 1000);
     }
 
+
+
+
     /**
-     * Cette méthode permet de lancer un dé à 6 faces.
-     * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
-     */
+         * Cette méthode permet de lancer un dé à 6 faces.
+         * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
+         */
     public void LancerDe () {
         this.de = this.random.nextInt(6) + 1;
     }

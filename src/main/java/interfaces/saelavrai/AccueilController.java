@@ -43,7 +43,7 @@ public class AccueilController {
      * Méthode qui ouvre le lien du site web
      */
     public void Loginn() throws IOException {
-        String url = "http://adminsae.alwaysdata.net/";
+        String url = "https://adminsae.alwaysdata.net/signup";
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
 

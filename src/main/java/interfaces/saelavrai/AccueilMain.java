@@ -110,10 +110,8 @@ public class AccueilMain extends Application {
 
     /**
      * Méthode main qui permet de lancer le jeu
-     *
-     * @param args
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main() throws SQLException {
         Databaseutils.connect();
         launch();
     }

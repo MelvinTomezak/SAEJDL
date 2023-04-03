@@ -1,5 +1,6 @@
 package interfaces.saelavrai;
 
+import interfaces.saelavrai.DAO.Databaseutils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -39,9 +40,7 @@ import java.util.ResourceBundle;
 
         // récupération des scores à partir de la base de données
         try {
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/itkrikdc",
-                    "itkrikdc", "4KdTrccy3LgH8IGDpq9P2qeZAdJo4l-n");
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM scorespseudo ORDER BY score DESC");
+            PreparedStatement stmt = Databaseutils.connect().prepareStatement("SELECT * FROM scorespseudo ORDER BY score DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");

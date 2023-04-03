@@ -1,5 +1,6 @@
 package interfaces.saelavrai;
-import interfaces.saelavrai.DAO.Postgresql;
+import interfaces.saelavrai.DAO.Databaseutils;
+//import interfaces.saelavrai.DAO.Postgresql;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 import static java.lang.System.out;
 
@@ -112,8 +114,8 @@ public class AccueilMain extends Application {
      *
      * @param args
      */
-    public static void main(String[] args) {
-        Postgresql.connect();
+    public static void main(String[] args) throws SQLException {
+        Databaseutils.connect();
         launch();
     }
 

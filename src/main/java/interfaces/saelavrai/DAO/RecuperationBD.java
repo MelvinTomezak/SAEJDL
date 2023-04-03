@@ -39,7 +39,7 @@ public class RecuperationBD {
      * @throws SQLException
      */
     public static void diff() throws SQLException {
-        Statement statement = Postgresql.c.createStatement();
+        Statement statement = Databaseutils.connect().createStatement();
         ResultSet resultSet = statement.executeQuery(difficult);
         resultSet.next();
         question=resultSet.getString(1);
@@ -52,7 +52,7 @@ public class RecuperationBD {
      * @throws SQLException
      */
     public static void med() throws SQLException {
-        Statement statement = Postgresql.c.createStatement();
+        Statement statement = Databaseutils.connect().createStatement();
         ResultSet resultSet = statement.executeQuery(medium);
         resultSet.next();
         question=resultSet.getString(1);
@@ -65,7 +65,7 @@ public class RecuperationBD {
      * @throws SQLException
      */
     public static void easy() throws SQLException {
-        Statement statement = Postgresql.c.createStatement();
+        Statement statement = Databaseutils.connect().createStatement();
         ResultSet resultSet = statement.executeQuery(easy);
         resultSet.next();
         question=resultSet.getString(1);

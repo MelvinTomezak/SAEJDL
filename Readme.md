@@ -1,9 +1,7 @@
 # Goose Game
 Bienvenue dans le manuel d'utilisation de notre application et de notre jeu de l'oie revisité. Vous trouverez ci-dessous comment obtenir l'application, comment fonctionne l'application et pour finir comment jouer et le fonctionnement de notre jeu.
 ## Comment obtenir notre application ?
-Avant toute chose assurez-vous d'avoir démarré votre ordinateur sous Linux (si vous utilisez les ordinateurs de l'IUT). Si ce n'est pas le cas redémarrer le dessus.
-Ensuite pour commencer vous devez vous rendre sur le site web disponible à l'adresse suivante (https://adminsae.alwaysdata.net/signup)
-Une fois que vous arrivez sur le site vous êtes sur notre page d'inscription, inscrivez-vous en utilisant de préférence avec votre adresse amu.
+Avant toute chose assurez-vous d'avoir démarré votre ordinateur sous Linux (si vous utilisez les ordinateurs de l'IUT). Si ce n'est pas le cas redémarrer le dessus. Ensuite pour commencer vous devez vous rendre sur le site web disponible à l'adresse suivante (https://adminsae.alwaysdata.net/signup). Une fois que vous arrivez sur le site vous êtes sur notre page d'inscription, inscrivez-vous en utilisant de préférence avec votre adresse amu.
 <p align="center">
   <img width="700" height="350" src="https://user-images.githubusercontent.com/92721333/229590452-4c3fb775-5cce-4c7f-8300-18a3f4f62e01.png">
 </p>
@@ -24,9 +22,10 @@ Une fois télécharger récupérer le chemin de l'emplacement du .jar comme ci-d
 <p align="center">
   <img width="700" height="350" src="https://user-images.githubusercontent.com/92721333/229605136-a9b99320-1807-4a6e-a515-e6f945675093.png">
 </p>
- Copier ce chemin, puis ouvrez un terminal.
- Ensuite a l'aide de la commande cd diriger vous dans le dossier contenant le .jar
+ Copier ce chemin, puis ouvrez un terminal. 
+ Ensuite a l'aide de la commande cd diriger vous dans le dossier contenant le .jar.
  Une fois fait lancer le .jar à l'aide de la commande ci-dessous.
+
  <p align="center">
   <img width="500" height="200" src="https://user-images.githubusercontent.com/92721333/229606560-5512cfed-b0a8-4b3f-930c-e0254952f104.png">
 </p>
@@ -119,7 +118,7 @@ Pour le démarrer il vous suffit de cliquer sur "start". Pour le stopper cliquer
   <img width="800" height="450" src="https://user-images.githubusercontent.com/92721333/229614352-7c5fd915-ece4-4479-8490-5c6537c4cc92.png">
 </p>
 
-Une fois démarrer, vous obtenez ceci (A noter un seul serveur suffit et normalement la professeur l'aura démarrer :))
+Une fois démarrer, vous obtenez ceci (A noter un seul serveur suffit et normalement le professeur l'aura démarrer :))
 
 <p align="center">
   <img width="800" height="450" src="https://user-images.githubusercontent.com/92721333/229614791-99911b4f-7c56-4869-9aea-1a7bec30f64b.png">

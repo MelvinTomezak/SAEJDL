@@ -2,7 +2,7 @@
 Bienvenue dans le manuel d'utilisation de notre application et de notre jeu de l'oie revisité. Vous trouverez ci-dessous comment obtenir l'application, comment fonctionne l'application et pour finir comment jouer et le fonctionnement de notre jeu.
 ## Comment obtenir notre application ?
 Avant toute chose assurez-vous d'avoir démarré votre ordinateur sous Linux (si vous utilisez les ordinateurs de l'IUT). Si ce n'est pas le cas redémarrer le dessus.
-Ensuite pour commencer vous devez vous rendre sur le site web disponible à l'adresse suivante (http://adminsae.alwaysdata.net/)
+Ensuite pour commencer vous devez vous rendre sur le site web disponible à l'adresse suivante (https://adminsae.alwaysdata.net/signup)
 Une fois que vous arrivez sur le site vous êtes sur notre page d'inscription, inscrivez-vous en utilisant de préférence avec votre adresse amu.
 
 <p align="center">

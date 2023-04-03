@@ -95,8 +95,11 @@ public class Plateau extends Application {
     private ProgressBar timerProgressBar;
 
     private boolean timerIsRunning  = false;
+    private Button De;
 
-
+    public Plateau() {
+        De = new Button();
+    }
 
 
 
@@ -237,7 +240,7 @@ public class Plateau extends Application {
 
         VBox vBox = new VBox();
 
-        Button De = new Button("Lancer le dé");
+        De = new Button("Lancer le dé");
         De.setStyle("-fx-background-color: #0f100f; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-border-radius: 4px;");
         De.getStyleClass().add("De-style");
         // De.setId("button De");
@@ -334,43 +337,7 @@ public class Plateau extends Application {
         });
 
         check.setOnAction(ae -> {
-            System.out.println("ça marche");
-            question.setText(RecuperationBD.question);
-            int flag = 0;
-            if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
-                flag = 1;
-                reponse = true;
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
-                alert.show();
-            }
-            question.setText("");
-            answer.setText("");
-            textquestion.setText("Question:");
-
-            AffichageJoeur.getText();
-            question.setStyle("-fx-font-weight: bold; -fx-padding: 5px; -fx-background-color: #f1f1f1; -fx-border-radius: 5px; -fx-border-color: #262525; -fx-border-width: 1px; -fx-alignment: center-left;");
-            answer.setStyle("-fx-padding: 5px; -fx-background-color: #f9f9f9; -fx-border-radius: 5px; -fx-border-color: #131313; -fx-border-width: 1px; -fx-alignment: center-left;");
-            textquestion.setStyle("-fx-font-size: 16px; -fx-text-fill: #212121;");
-
-
-            if (flag == 0) {
-                reponse = false;
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
-                alert.show();
-            }
-            if (reponse) {
-                mouvpion();
-                question.setEditable(true);
-                De.setDisable(false);
-
-
-
-            }
-            if (!reponse) {
-                this.playerIndex = (this.playerIndex + 1) % pions.length;
-                question.setEditable(true);
-                De.setDisable(false);
-            }
+            checkButton();
         });
 // Ajout du VBox à la gauche du borderPane
         //leftBorderPane.setTop(joueurInfo);
@@ -418,27 +385,18 @@ public class Plateau extends Application {
         timerIsRunning = true;
 
         timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                System.out.println("Le temps est écoulé!");
-                remainingTime = 0;
-                Platform.runLater(() -> {
-                    timerProgressBar.setProgress(0.0);
-                    check.fire();
-                });
-                if (timer != null) {
-                    timer.cancel();
-                    timer = null;
-                    timerIsRunning = false;
-                }
-            }
-        }, TIMER_DURATION * 1000);
+
 
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 double progress = (double) remainingTime / TIMER_DURATION;
                 Platform.runLater(() -> timerProgressBar.setProgress(progress));
-                if (remainingTime == 0) {
+                if (remainingTime <= 0) {
+                    Platform.runLater(() -> {
+                        timerProgressBar.setProgress(0.0);
+                        checkButton();
+                    });
+
                     if (timer != null) {
                         timer.cancel();
                         timer = null;
@@ -451,13 +409,53 @@ public class Plateau extends Application {
         }, 0, 1000);
     }
 
+    public void checkButton() {
+        System.out.println("ça marche");
+        question.setText(RecuperationBD.question);
+        int flag = 0;
+        if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
+            flag = 1;
+            reponse = true;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
+            alert.show();
+        }
+        question.setText("");
+        answer.setText("");
+        textquestion.setText("Question:");
+
+        AffichageJoeur.getText();
+        question.setStyle("-fx-font-weight: bold; -fx-padding: 5px; -fx-background-color: #f1f1f1; -fx-border-radius: 5px; -fx-border-color: #262525; -fx-border-width: 1px; -fx-alignment: center-left;");
+        answer.setStyle("-fx-padding: 5px; -fx-background-color: #f9f9f9; -fx-border-radius: 5px; -fx-border-color: #131313; -fx-border-width: 1px; -fx-alignment: center-left;");
+        textquestion.setStyle("-fx-font-size: 16px; -fx-text-fill: #212121;");
+
+
+        if (flag == 0) {
+            reponse = false;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Wrong Answer!", ButtonType.OK);
+            alert.show();
+        }
+        if (reponse) {
+            mouvpion();
+            question.setEditable(true);
+            De.setDisable(false);
+
+
+
+        }
+        if (!reponse) {
+            this.playerIndex = (this.playerIndex + 1) % pions.length;
+            question.setEditable(true);
+            De.setDisable(false);
+        }
+    }
+
 
 
 
     /**
-         * Cette méthode permet de lancer un dé à 6 faces.
-         * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
-         */
+     * Cette méthode permet de lancer un dé à 6 faces.
+     * Elle prend en compte un objet Random, et renvoie un nombre entier compris entre 1 et 6.
+     */
     public void LancerDe () {
         this.de = this.random.nextInt(6) + 1;
     }

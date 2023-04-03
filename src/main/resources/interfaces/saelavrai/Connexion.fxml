@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.saelavrai.LoginController">
 
     <ImageView layoutX="950.0" layoutY="550.0">
         <image>
@@ -13,25 +22,31 @@
     </ImageView>
     <Button fx:id="Accueil" layoutX="944.0" layoutY="550.0" mnemonicParsing="false" onAction="#Home" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: Transparent;" text="Notice" textFill="#ffffff00" />
 
-    <VBox alignment="CENTER" layoutX="14.0" layoutY="26.0" spacing="10.0">
-        <Label text="Connexion" />
-        <HBox alignment="CENTER" spacing="10.0">
-            <Label text="Nom d'utilisateur" />
-            <TextField fx:id="usernameField" />
-        </HBox>
-        <HBox alignment="CENTER" spacing="10.0">
-            <Label text="Mot de passe" />
-            <PasswordField fx:id="passwordField" />
-        </HBox>
-        <Button onAction="#loginButtonClicked" text="Se connecter" />
+    <VBox alignment="CENTER" layoutX="425.0" layoutY="282.0" spacing="10.0">
+        <HBox alignment="CENTER" spacing="10.0" />
+        <HBox alignment="CENTER" spacing="10.0" />
         <Label fx:id="errorMessage" textFill="RED" />
-        <Button onAction="#startGame" text="Commencer le jeu" />
     </VBox>
-
-    <TableView fx:id="emailTable" layoutX="500.0" layoutY="32.0" prefHeight="375.0" prefWidth="248.0">
+    <TableView fx:id="emailTable" layoutX="743.0" prefHeight="448.0" prefWidth="257.0">
         <columns>
             <TableColumn fx:id="emailColumn" prefWidth="275.0" text="Email" />
         </columns>
     </TableView>
+     <Label layoutX="444.0" layoutY="26.0" text="Connection">
+      <font>
+         <Font name="Arial Black" size="18.0" />
+      </font>
+   </Label>
+    <ImageView fitHeight="200.0" fitWidth="200.0" nodeOrientation="RIGHT_TO_LEFT">
+        <image>
+            <Image url="@../../images/OieHome.JPG" /> <!-- https://turbulus.com/jeux-en-ligne/coloriages-en-ligne/modele-oie.png-->
+        </image>
+    </ImageView>
+      <TextField fx:id="usernameField" layoutX="426.0" layoutY="117.0" />
+      <PasswordField fx:id="passwordField" layoutX="426.0" layoutY="167.0" />
+      <Label layoutX="366.0" layoutY="171.0" prefHeight="17.0" prefWidth="60.0" text="Password" />
+      <Label layoutX="366.0" layoutY="121.0" prefHeight="17.0" prefWidth="60.0" text="Username" />
+     <Button layoutX="470.0" layoutY="212.0" onAction="#loginButtonClicked" text="Connect" />
+     <Button layoutX="366.0" layoutY="550.0" onAction="#startGame" prefHeight="50.0" prefWidth="240.0" text="Start The Game" />
 
 </AnchorPane>

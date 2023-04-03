@@ -1,6 +1,6 @@
 package interfaces.saelavrai;
 
-import interfaces.saelavrai.DAO.Databaseutils;
+import interfaces.saelavrai.DAO.Postgresql;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
 
 /**
  * Cette classe est le controller des scores
@@ -40,8 +41,9 @@ import java.util.ResourceBundle;
 
         // récupération des scores à partir de la base de données
         try {
-            PreparedStatement stmt = Databaseutils.connect().prepareStatement("SELECT * FROM scorespseudo ORDER BY score DESC");
-            ResultSet rs = stmt.executeQuery();
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/itkrikdc",
+                    "itkrikdc", "4KdTrccy3LgH8IGDpq9P2qeZAdJo4l-n");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM scorespseudo ORDER BY score DESC");            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String emailuser = rs.getString("emailuser");

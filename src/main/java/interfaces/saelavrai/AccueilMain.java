@@ -1,6 +1,5 @@
 package interfaces.saelavrai;
 import interfaces.saelavrai.DAO.Databaseutils;
-//import interfaces.saelavrai.DAO.Postgresql;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

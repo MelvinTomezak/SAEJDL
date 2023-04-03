@@ -148,36 +148,22 @@ public class Plateau extends Application {
         for (int i = 0; i < nbjoueur; ++i) {
             Circle circle = new Circle(hauteur / 65);
             circle.setFill(couleur[i]);
+            try {
+                Connection conn = Databaseutils.connect();
+                Statement stmt = conn.createStatement();
+                String sql = "INSERT INTO scorespseudo (emailuser, score, date_maj) VALUES ('" + Connections[i] + "', " + points + ", NOW())";
+                stmt.executeUpdate(sql);
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }Label label = new Label("Player Name : " + Connections[i]);
+            label.setMinWidth(Region.USE_PREF_SIZE);
+            label.setAlignment(Pos.CENTER_LEFT);
 
-            Text text = new Text();
-            text.setText("Nom joueur : " + Connections[i]);
-
-            // Créer le Label pour afficher la valeur de points
-            Label labelPoints = new Label("Points : 0");
-
-            gridPane.add(text, 0, i + 1);
+            gridPane.add(label, 0, i + 1);
             gridPane.add(circle, 1, i + 1);
-            gridPane.add(labelPoints, 2, i + 1);
+        }
 
-            // Mettre à jour la valeur de points chaque fois qu'un joueur répond correctement à une question
-            if (answer.getText().equalsIgnoreCase(RecuperationBD.answer)) {
-                int currentPoints = Integer.parseInt(labelPoints.getText().split(": ")[1]);
-                currentPoints += 10; // ou une autre valeur si vous souhaitez que la réponse correcte rapporte plus de points
-                labelPoints.setText("Points : " + currentPoints);
-
-                // Insérer les scores dans la base de données
-                try {
-                    Connection conn = Databaseutils.connect();
-                    PreparedStatement stmt = conn.prepareStatement("INSERT INTO scorespseudo (emailuser, score, date_maj) VALUES (?, ?, NOW())");
-                    stmt.setString(1, Connections[i]);
-                    stmt.setInt(2, currentPoints);
-                    stmt.executeUpdate();
-                    conn.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-    }
 
         gridPane.setAlignment(Pos.TOP_LEFT);
 
@@ -333,6 +319,7 @@ public class Plateau extends Application {
             reponse = true;
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Correct Answer!", ButtonType.OK);
             alert.show();
+            points += 10;
         }
         question.setText("");
         answer.setText("");

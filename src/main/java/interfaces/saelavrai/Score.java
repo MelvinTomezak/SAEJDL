@@ -1,9 +1,9 @@
 package interfaces.saelavrai;
 public class Score {
-    private int id;
-    private String emailuser;
-    private int score;
-    private String date_maj;
+    private final int id;
+    private final String emailuser;
+    private final int score;
+    private final String date_maj;
 
     public Score(int id, String emailuser, int score, String date_maj) {
         this.id = id;

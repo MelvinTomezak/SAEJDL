@@ -1,14 +1,6 @@
 package interfaces.saelavrai;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -68,30 +60,6 @@ public class AccueilController {
         stackPane.getChildren().get(4).setVisible(false);
         stackPane.getChildren().get(5).setVisible(true);
     }
-
-
-
-//        private Button connexionButton;
-
-//    @FXML
-//    public void initialize() {
-//        // Ajouter un événement de clic au bouton "Connexion"
-//        connexionButton.setOnAction(event -> {
-//            // Charger la page de connexion depuis le fichier FXML
-//            AnchorPane Connexion = null;
-//            try {
-//                Connexion = FXMLLoader.load(getClass().getResource("Connexion.fxml"));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            // Remplacer la page courante par la page de connexion
-//            StackPane stackPane = (StackPane) connexionButton.getScene().getRoot();
-//            stackPane.getChildren().set(0, Connexion);
-//        });
-//
-//    }
-
-
     /**
      * Méthode qui ouvre le lien du dépôt GitHub
      */

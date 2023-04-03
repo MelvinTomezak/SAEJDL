@@ -1,8 +1,5 @@
 package interfaces.saelavrai;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * Cette classe représente un joueur de jeu
